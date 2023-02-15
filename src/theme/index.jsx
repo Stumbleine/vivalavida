@@ -6,16 +6,18 @@ export const lightTheme = createTheme({
   palette: {
     mode: "light",
     primary: {
-      main: "#38AFD1",
+      main: "#181818",
     },
     secondary: {
-      main: "#388A9C",
+      main: "#7B818A",
+    },
+    terciary: {
+      main: "#EEF2F7",
     },
     background: {
       paper: "#fff",
-      default: "#F4F4F4",
+      default: "#F5F5F5",
     },
-
     warning: {
       main: orange[800],
       light: orange[500],
@@ -31,7 +33,7 @@ export const lightTheme = createTheme({
     },
   },
   typography: {
-    fontFamily: "'Raleway', sans-serif",
+    fontFamily: "'Poppins', sans-serif",
   },
 });
 
@@ -39,16 +41,18 @@ export const darkTheme = createTheme({
   palette: {
     mode: "light",
     primary: {
-      main: "#38AFD1",
+      main: "#EEF2F7",
     },
     secondary: {
-      main: "#388A9C",
+      main: "#181818",
+    },
+    terciary: {
+      main: "#7B818A",
     },
     background: {
       paper: "#fff",
-      default: "#F4F4F4",
+      default: "#181818",
     },
-
     warning: {
       main: orange[800],
       light: orange[500],
@@ -64,7 +68,7 @@ export const darkTheme = createTheme({
     },
   },
   typography: {
-    fontFamily: "'Raleway', sans-serif",
+    fontFamily: "'Poppins', sans-serif",
   },
 });
 

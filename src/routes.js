@@ -1,10 +1,15 @@
-import { useLocation, useRoutes } from "react-router-dom";
+import { Navigate, useLocation, useRoutes } from "react-router-dom";
 import Dashboard from "./layouts/Dashboard";
 import Main from "./pages/public/Main";
 import SignIn from "./pages/public/SignIn";
 import SignUp from "./pages/public/SignUp";
-import { Home } from "@mui/icons-material";
+// import { Home } from "@mui/icons-material";
 import Songs from "./pages/Songs";
+import RegisterSong from "./pages/public/RegisterSong";
+import MyMusic from "./pages/MyMusic";
+import PlaylistContent from "./pages/PlaylistContent";
+import Playlists from "./pages/Playlists";
+import MyFavoritesTunes from "./pages/MyFavoritesTunes";
 
 export default function Router() {
   const location = useLocation();
@@ -16,23 +21,28 @@ export default function Router() {
       children: [
         {
           path: "/",
-          element: <Main />,
+          element: <Navigate to="my-music" />,
         },
         {
-          path: "/login",
-          element: <SignIn />,
+          path: "my-music",
+          element: <MyMusic />,
         },
         {
-          path: "/login",
-          element: <SignUp />,
+          path: "playlists",
+          element: <Playlists />,
         },
-      ],
-    },
-    {
-      path: "dashboard",
-      children: [
-        { path: "home", element: <Home /> },
-        { path: "songs", element: <Songs /> },
+        {
+          path: "playlists/:name",
+          element: <PlaylistContent />,
+        },
+        {
+          path: "favorites-tunes",
+          element: <MyFavoritesTunes />,
+        },
+        {
+          path: "register-tune",
+          element: <RegisterSong />,
+        },
       ],
     },
   ]);
