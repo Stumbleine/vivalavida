@@ -1,77 +1,80 @@
-import React, { useState } from 'react';
-import { Typography } from '@mui/material'
-
-function Formulario() {
-    const [tittle, setTittle] = useState('')
-    const [genere, setGenere] = useState('')
-    const [artist, setArtist] = useState('')
-    const [album, setAlbum] = useState('')
-    const [duration, setDuration] = useState('')
-    const [linkMusic, setMusic] = useState('')
-
-    const handleSubmit = (event) => {
-        event.preventDefault();
-    };
-
-    return (
-        <form onSubmit={handleSubmit}>
-            <div>
-                <label htmlFor="tittle">Titulo:</label>
-                <input
-                    type="text"
-                    id="tittle"
-                    value={tittle}
-                    onChange={(event) => setTittle(event.target.value)}
-                />
-            </div>
-            <div>
-                formik + yup
-                <label htmlFor="genere">Genero:</label>
-                <input
-                    type="email"
-                    id="genere"
-                    value={genere}
-                    onChange={(event) => setGenere(event.target.value)}
-                />
-            </div>
-            <div>
-                <label htmlFor="artist">Artista:</label>
-                <textarea
-                    id="text"
-                    value={artist}
-                    onChange={(event) => setArtist(event.target.value)}
-                />
-            </div>
+import { Button, Stack, TextField } from '@mui/material';
+import { Form, FormikProvider, useFormik } from 'formik';
+import React from 'react';
+import * as Yup from 'yup';
 
 
+export default function SongRegister() {
+  const formik = useFormik({
+    initialValues: {
+      title: '',
+      genere: '',
+      yearLaunch: '',
+      coverImage: '',
+      arraySong: '',
+      linkMusic: '',
+    },
+    enableReinitialize: true,
+    validationSchema: Yup.object().shape({
+      title: Yup.string().required("El titulo es requerido"),
+      gender: Yup.string().required("El genero es requerido"),
+      artist: Yup.string().required("El artista es requerido"),
+      album: Yup.string().required("El album es requerido"),
+      duration: Yup.string().required("La duracion es requerida"),
+      linkMusic: Yup.string().required("El link es requerido")
+    }),
+    onSubmit: values => {
 
-            <div>
-                <label htmlFor="album">Album:</label>
-                <textarea
-                    id="text"
-                    value={album}
-                    onChange={(event) => setAlbum(event.target.value)}
-                />
-            </div>
-            <div>
-                <label htmlFor="duration">Duration:</label>
-                <textarea
-                    id="text"
-                    value={duration}
-                    onChange={(event) => setDuration(event.target.value)}
-                />
-            </div>
-            <div>
-                <label htmlFor="link">Link:</label>
-                <textarea
-                    id="text"
-                    value={linkMusic}
-                    onChange={(event) => setMusic(event.target.value)}
-                />
-            </div>
-            <button type="submit">Enviar</button>
-        </form>
-    );
+    },
+  });
+  const { getFieldProps, values, errors, touched, isSubmitting } = formik;
+  return (
+    <FormikProvider value={formik}>
+      <Form autoComplete>
+        <Stack direction="column" spacing={2} marginLeft={40} marginTop={15} marginRight={40} >
+          <TextField
+            fullWidth
+            label="Titulo"
+            {...getFieldProps('title')}
+            error={Boolean(touched.title && errors.title)}
+            helperText={touched.title && errors.title}
+          />
+          <TextField
+            fullWidth
+            label="Genero"
+            {...getFieldProps('gender')}
+            error={Boolean(touched.gender && errors.gender)}
+            helperText={touched.gender && errors.gender}
+          />
+          <TextField
+            fullWidth
+            label="Artista"
+            {...getFieldProps('artist')}
+            error={Boolean(touched.artist && errors.artist)}
+            helperText={touched.artist && errors.artist}
+          />
+          <TextField
+            fullWidth
+            label="Album"
+            {...getFieldProps('album')}
+            error={Boolean(touched.album && errors.album)}
+            helperText={touched.album && errors.album}
+          />
+          <TextField
+            label="Duracion"
+            {...getFieldProps('duration')}
+            error={Boolean(touched.duration && errors.duration)}
+            helperText={touched.duration && errors.duration}
+          />
+          <TextField
+            label="LinkMusic"
+            {...getFieldProps('linkMusic')}
+            error={Boolean(touched.linkMusic && errors.linkMusic)}
+            helperText={touched.linkMusic && errors.linkMusic}
+          />
+          <Button type="submit">Guardar</Button>
+        </Stack>
+      </Form>
+    </FormikProvider>
+  );
 }
-
-export default Formulario;
