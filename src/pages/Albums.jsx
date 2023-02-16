@@ -3,6 +3,8 @@ import { db } from '../db'
 import { useLiveQuery } from 'dexie-react-hooks';
 import { useNavigate, useParams } from "react-router-dom";
 import Page from '../components/Page';
+import AlbumCard from '../components/Card/AlbumCard';
+import { Stack } from '@mui/system';
 
 export default function Albums() {
 
@@ -21,6 +23,18 @@ export default function Albums() {
 
   const { id } = useParams();
 
+  const songList = useLiveQuery(
+    () => db.songs.toArray()
+  );
+
+  const songsForAlbum = songList?.filter((song) => {
+    return song.albumId === parseInt(id);
+  })
+
+  const songs = songsForAlbum?.map((song) => {
+    return <p key={song.songId}>{song.title}</p>
+  })
+
   const albumList = useLiveQuery(
     () => db.albums.toArray()
   );
@@ -30,18 +44,15 @@ export default function Albums() {
     })
 
   const albums = albumsForArtist?.map((album) => {
-    return <p key={album.albumId} onClick={() => navigate(`/songs/${album.albumId}`)}>{album.title}</p>
+    return <AlbumCard key={album.albumId} album={album}/>
   })
 
   return (
     <Page config={{ pt: 5, pl: 5, pr: 5 }}>
       <div>
-        <h1>Album</h1>
-        {albumList && albumList.length > 0 ? (
-          <div>{albums}</div>
-        ) : (
-          <p>There are no albums</p>
-        )}
+          <Stack spacing={2}>
+            {albums}
+          </Stack>
         <button onClick={addAlbum}>Add Album</button>
       </div>
     </Page>  

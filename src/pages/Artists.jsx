@@ -4,7 +4,7 @@ import { db } from "../db";
 import { useNavigate } from "react-router-dom";
 import Page from "../components/Page";
 import ArtistCard from '../components/Card/ArtistCard';
-import {Stack} from '@mui/material';
+import {Stack, Typography} from '@mui/material';
 
 
 export default function Artists() {
@@ -51,29 +51,17 @@ export default function Artists() {
   // }
 
   const artists = artistList?.map((artist) => {
-    return <p key={artist.artistId} onClick={() => navigate(`/albums/${artist.artistId}`)}>{artist.name}</p>
+    //return <p key={artist.artistId} onClick={() => navigate(`/albums/${artist.artistId}`)}>{artist.name}</p>
+    return <ArtistCard key={artist.artistId} artist={artist}/>
   })
 
 
   return (
     <Page config={{ pt: 5, pl: 5, pr: 5 }}>
-
+      <Typography variant="h4">All Artists</Typography>
       <Stack spacing={2}>
-        {artistList?.map((artist) => (
-      <ArtistCard key={artist.artistId} artist={artist}>
-        
-      </ArtistCard>))}
+      {artists}
       </Stack>
-      
-        <div>
-          <h1>Artist</h1>
-          {artistList && artistList.length > 0 ? (
-            <div>{artists}</div>
-          ) : (
-            <p>There are no artists</p>
-          )}
-          <button onClick={addArtist}>Add Artist</button>
-        </div>
     </Page>
   );
 }

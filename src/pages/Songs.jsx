@@ -3,6 +3,7 @@ import { db } from '../db'
 import { useLiveQuery } from 'dexie-react-hooks';
 import { useParams } from "react-router-dom";
 import Page from "../components/Page";
+import { List, ListItem, ListItemText, Typography } from "@mui/material";
 
 export default function Songs() {
 
@@ -23,13 +24,22 @@ export default function Songs() {
   const songList = useLiveQuery(
     () => db.songs.toArray()
   );
-
+  
   const songsForAlbum = songList?.filter((song) => {
     return song.albumId === parseInt(id);
   })
 
+  let i = 0;
   const songs = songsForAlbum?.map((song) => {
-    return <p key={song.songId}>{song.title}</p>
+    i++;
+    return (
+      <List>
+        <ListItem key={song.title}>
+           <Typography component='span' variant='body2' sx={{ marginRight: '10px' }}>{i + '.'}</Typography>
+          <ListItemText primary={song.title} secondary={song.duration} />
+        </ListItem>
+      </List>
+    )
   })
 
   return (
