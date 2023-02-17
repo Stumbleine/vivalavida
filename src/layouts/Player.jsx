@@ -1,28 +1,29 @@
-import { AppBar, Box, Typography } from "@mui/material";
-import React from "react";
-
+import { AppBar, Box, Toolbar, Typography } from '@mui/material';
+import React, { useRef } from 'react';
+import { songMock } from '../mocks/albums';
+import { orange } from '@mui/material/colors';
+import SongSummary from '../components/Containers/SongSummary';
+import PlayerActions from '../components/Containers/PlayerActions';
 export default function Player() {
-  return (
-    <AppBar
-      sx={{
-        // position: "sticky",
-        bgcolor: "secondary.main",
-        zIndex: (theme) => theme.zIndex.drawer + 1,
-        top: "90%",
-        bottom: 0,
-      }}
-    >
-      <Box
-        sx={{
-          height: "100%",
-          background: "blue",
-          p: 2,
-          display: "flex",
-          alignItems: "center",
-        }}
-      >
-        <Typography>sdas</Typography>
-      </Box>
-    </AppBar>
-  );
+	const song = songMock;
+
+	return (
+		<Box
+			sx={{
+				zIndex: theme => theme.zIndex.drawer + 1,
+				position: 'absolute',
+				background: orange[100],
+				bottom: 0,
+				width: '100%',
+			}}>
+			<Toolbar
+				sx={{
+					bgcolor: 'secondary.main',
+					height: 90,
+				}}>
+				<SongSummary song={song} />
+				<PlayerActions song={song} />
+			</Toolbar>
+		</Box>
+	);
 }
