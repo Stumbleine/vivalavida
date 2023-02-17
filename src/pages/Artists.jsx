@@ -58,7 +58,7 @@ export default function Artists() {
 
   return (
     <Page config={{ pt: 5, pl: 5, pr: 5 }}>
-      <Typography variant="h4">All Artists</Typography>
+      <Typography variant="h4">Artists</Typography>
       <Stack spacing={2}>
       {artists}
       </Stack>

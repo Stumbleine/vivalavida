@@ -3,7 +3,7 @@ import { db } from '../db'
 import { useLiveQuery } from 'dexie-react-hooks';
 import { useParams } from "react-router-dom";
 import Page from "../components/Page";
-import { List, ListItem, ListItemText, Typography } from "@mui/material";
+import { List, ListItem, ListItemText, Typography, AppBar, Toolbar, Avatar } from "@mui/material";
 
 export default function Songs() {
 
@@ -20,6 +20,12 @@ export default function Songs() {
   }
 
   const { id } = useParams();
+
+  const albumList = useLiveQuery(
+    () => db.albums.toArray()
+  );
+
+  const album = albumList?.find((album) => album.albumId === parseInt(id));
 
   const songList = useLiveQuery(
     () => db.songs.toArray()
@@ -45,7 +51,15 @@ export default function Songs() {
   return (
     <Page config={{ pt: 5, pl: 5, pr: 5 }}>
       <div>
-        <h1>Songs</h1>
+        <AppBar position="static" sx={{background: 'white', color: 'black'}}>
+          <Toolbar>
+        <Avatar src={album?.coverImage} sx={{ width: 80, height: 80, marginRight: 16}} />
+        <Typography variant="h1" sx={{fontSize: 24, fontWeight: 'bold'}}>
+          {album?.title}
+        </Typography>
+      </Toolbar>
+    </AppBar>
+        
         {songsForAlbum && songsForAlbum.length > 0 ? (
           <div>{songs}</div>
         ) : (

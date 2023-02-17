@@ -5,6 +5,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import Page from '../components/Page';
 import AlbumCard from '../components/Card/AlbumCard';
 import { Stack } from '@mui/system';
+import { Typography, AppBar, Toolbar } from '@mui/material';
 
 export default function Albums() {
 
@@ -23,17 +24,11 @@ export default function Albums() {
 
   const { id } = useParams();
 
-  const songList = useLiveQuery(
-    () => db.songs.toArray()
+   const artistList = useLiveQuery(
+    () => db.artists.toArray()
   );
 
-  const songsForAlbum = songList?.filter((song) => {
-    return song.albumId === parseInt(id);
-  })
-
-  const songs = songsForAlbum?.map((song) => {
-    return <p key={song.songId}>{song.title}</p>
-  })
+  const artist = artistList?.find((artist) => artist.artistId === parseInt(id))
 
   const albumList = useLiveQuery(
     () => db.albums.toArray()
@@ -50,6 +45,13 @@ export default function Albums() {
   return (
     <Page config={{ pt: 5, pl: 5, pr: 5 }}>
       <div>
+          <AppBar position="static" sx={{background: `url(${artist?.image})`, backgroundSize: 'cover', backgroundPosition: 'center', marginBottom: '20px', height: '30vh'}}>
+            <Toolbar sx={{display: 'flex', alignItems: 'flex-end', height: '100%', backdropFilter: 'blur(4px)'}}>
+              <Typography variant="h1" sx={{fontSize: 28, fontWeight: 'bold', color: 'white', marginBottom: 8,}}>
+                {artist?.name}
+              </Typography>
+            </Toolbar>
+          </AppBar>
           <Stack spacing={2}>
             {albums}
           </Stack>
