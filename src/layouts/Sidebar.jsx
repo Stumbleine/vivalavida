@@ -1,8 +1,21 @@
 import { Box, Button, Drawer, Toolbar } from "@mui/material";
 import React from "react";
 import NavigationBtn from "../components/NavigationBtn";
+import { db } from "../db";
+import { useLiveQuery } from "dexie-react-hooks";
 
 export default function Sidebar({}) {
+
+  const artistList = useLiveQuery(
+    () => db.artists.toArray()
+  );
+ 
+  const artists = artistList?.map((artist) => {
+    return (
+      <NavigationBtn key={artist.artistId} label={artist.name} route={`/albums/${artist.artistId}`}/>
+    )
+  })
+
   return (
     <Drawer
       variant="permanent"
@@ -24,11 +37,16 @@ export default function Sidebar({}) {
         <Button>Agregar</Button>
         <NavigationBtn label="All Artists" route="/artists" />
       </Box>
-      <Box sx={{ mr: 1, display: "flex", flexDirection: "column" }}>
-        <NavigationBtn label="Artista 1" route="/artists" />
-        <NavigationBtn label="Artista 2" route="/artists" />
-        <NavigationBtn label="All Artists" route="/artists" />
-      </Box>
+      {/* <Box sx={{ mr: 1, display: "flex", flexDirection: "column"}}> */}
+        {artistList && artistList.length > 0 ? (
+          <Box sx={{ mr: 1, display: "flex", flexDirection: "column"}}>
+          {artists}
+          </Box>
+        ) : (
+              <NavigationBtn label="No artists were found"/>
+            )
+        }
+      
     </Drawer>
   );
 }
