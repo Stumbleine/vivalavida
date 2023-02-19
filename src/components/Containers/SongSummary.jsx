@@ -8,11 +8,13 @@ export default function SongSummary({ song }) {
 				component="img"
 				alt="ss"
 				src={song?.album?.coverImage}
-				sx={{ width: 50, height: 'auto' }}
+				sx={{ width: 50, height: 'auto', borderRadius: 2 }}
 			/>
 			<Box sx={{ mx: 1 }}>
 				<Typography>{song?.title}</Typography>
-				<Typography variant="subtitle2">{song?.album?.name}</Typography>
+				<Typography variant="subtitle2" color="textSecondary">
+					{song?.album?.name}
+				</Typography>
 			</Box>
 		</Box>
 	);

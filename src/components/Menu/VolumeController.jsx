@@ -21,7 +21,7 @@ export default function VolumeController({ handleVolume, volume }) {
 					sx={{
 						color: 'text.icon',
 						'&:hover': {
-							color: 'primary.main',
+							color: 'terciary.main',
 						},
 					}}>
 					<VolumeHigh></VolumeHigh>
@@ -37,7 +37,7 @@ export default function VolumeController({ handleVolume, volume }) {
 				PaperProps={{
 					style: {
 						borderRadius: 15,
-						background: theme.palette.secondary.main,
+						background: theme.palette.primary.main,
 						// transform: 'rotateX(90deg,0)',
 					},
 				}}
@@ -75,6 +75,8 @@ export default function VolumeController({ handleVolume, volume }) {
 						onChange={e => handleVolume(e.target.value)}
 						sx={{
 							width: 250,
+							color: 'secondary.main',
+
 							height: 5,
 							'& .MuiSlider-thumb': {
 								width: 10,
@@ -100,7 +102,9 @@ export default function VolumeController({ handleVolume, volume }) {
 							},
 						}}
 					/>
-					<Typography sx={{ ml: 1, width: 30, textAlign: 'center' }}>
+					<Typography
+						color="textSecondary"
+						sx={{ ml: 1, width: 30, textAlign: 'center' }}>
 						{volume * 100}%
 					</Typography>
 				</Box>

@@ -11,20 +11,19 @@ import {
 } from '@mui/material';
 import React, { useEffect, useRef, useState } from 'react';
 import { ReactComponent as Play } from '../../assets/icons/play.svg';
+import { ReactComponent as Pause } from '../../assets/icons/pause.svg';
 import { ReactComponent as Previus } from '../../assets/icons/backward.svg';
 import { ReactComponent as Next } from '../../assets/icons/forward.svg';
 import { ReactComponent as Repeat } from '../../assets/icons/repeat.svg';
-import { ReactComponent as Pause } from '../../assets/icons/pause.svg';
 import { ReactComponent as VolumeHigh } from '../../assets/icons/volume-high.svg';
 import { ReactComponent as VolumeLow } from '../../assets/icons/volume-low.svg';
 import { ReactComponent as VolumeOff } from '../../assets/icons/volume-off.svg';
 import { ReactComponent as Shuffle } from '../../assets/icons/shuffle.svg';
-import Viva from '../../assets/songs/Lovers-in-Japan.m4a';
-import WaterDrop from './water-drop.mp3';
 import useSound from 'use-sound';
 import { useTheme } from '@emotion/react';
 import VolumeController from '../Menu/VolumeController';
 import ProgressBar from './ProgressBar';
+import Viva from '../../assets/songs/Lovers-in-Japan.m4a';
 
 export default function PlayerActions({ song }) {
 	const theme = useTheme();
@@ -82,7 +81,7 @@ export default function PlayerActions({ song }) {
 						sx={{
 							color: 'text.icon',
 							'&:hover': {
-								color: 'primary.main',
+								color: 'terciary.main',
 							},
 						}}>
 						<Repeat />
@@ -93,7 +92,7 @@ export default function PlayerActions({ song }) {
 						sx={{
 							color: 'text.icon',
 							'&:hover': {
-								color: 'primary.main',
+								color: 'terciary.main',
 							},
 						}}>
 						<Previus />
@@ -108,7 +107,7 @@ export default function PlayerActions({ song }) {
 							sx={{
 								color: 'text.icon',
 								'&:hover': {
-									color: 'primary.main',
+									color: 'terciary.main',
 								},
 							}}>
 							<Play />
@@ -123,7 +122,7 @@ export default function PlayerActions({ song }) {
 							sx={{
 								color: 'text.icon',
 								'&:hover': {
-									color: 'primary.main',
+									color: 'terciary.main',
 								},
 							}}>
 							<Pause />
@@ -135,7 +134,7 @@ export default function PlayerActions({ song }) {
 						sx={{
 							color: 'text.icon',
 							'&:hover': {
-								color: 'primary.main',
+								color: 'terciary.main',
 							},
 						}}>
 						<Next />
@@ -146,7 +145,7 @@ export default function PlayerActions({ song }) {
 						sx={{
 							color: 'text.icon',
 							'&:hover': {
-								color: 'primary.main',
+								color: 'terciary.main',
 							},
 						}}>
 						<Shuffle />

@@ -1,67 +1,42 @@
-import React from "react";
-import { useLiveQuery } from "dexie-react-hooks";
-import { db } from "../db";
-import { useNavigate } from "react-router-dom";
-import Page from "../components/Page";
+import React, { useEffect, useState } from 'react';
+import { useLiveQuery } from 'dexie-react-hooks';
+import { useNavigate } from 'react-router-dom';
+import Page from '../components/Page';
 import ArtistCard from '../components/Card/ArtistCard';
-import {Stack, Typography} from '@mui/material';
-
+import { Grid, Stack, Typography } from '@mui/material';
+import { db } from '../services/db';
+import { artistsMock } from '../mocks/artistsMock';
+import { addArtist } from '../services/artist';
+import { Title } from '@mui/icons-material';
+import TitlePage from '../components/TitlePage';
+import { useDispatch, useSelector } from 'react-redux';
+import { setArtists } from '../store/ArtistSlice';
 
 export default function Artists() {
+	const { artists } = useSelector(state => state.artist);
+	const dispatch = useDispatch();
+	useEffect(() => {
+		const fetchData = async () => {
+			try {
+				const result = await db.artist.toArray();
+				dispatch(setArtists(result));
+			} catch (error) {
+				console.log(error);
+			}
+		};
+		fetchData();
+	}, []);
 
-  const navigate = useNavigate();
-  
-  async function addArtist() {
-    try {
-      await db.artists.add({
-      name: 'Taylor Swift 5',
-      genders: ['pop', 'rock'],
-      members: ['Taylor Swift'],
-      website: 'www.google.com',
-      image: 'https://i.imgflip.com/4t0m5.jpg',
-  });
-    } catch (error) {
-        console.log(error);
-    }
-  }
-
-  // async function updateArtist() {
-  //   await db.artists.put({
-  //   artistId: 5,
-  //   name: 'Taylor Swift 5',
-  //   genders: ['pop', 'rock', 'trance'],
-  //   members: ['Taylor Swift'],
-  //   website: 'www.google.com',
-  //   image: 'https://i.imgflip.com/4t0m5.jpg',
-  // });
-  // }
-
-  // async function deleteArtist(id) {
-  //   await db.artists.delete(id);
-  // }
-  
-
-  const artistList = useLiveQuery(
-    () => db.artists.toArray()
-  );
-
-  // const getArtistDexie = (id) => {
-  //   const artist = artistsDexie?.find((artist) => artist.artistId === id)
-  //   return artist;
-  // }
-
-  const artists = artistList?.map((artist) => {
-    //return <p key={artist.artistId} onClick={() => navigate(`/albums/${artist.artistId}`)}>{artist.name}</p>
-    return <ArtistCard key={artist.artistId} artist={artist}/>
-  })
-
-
-  return (
-    <Page config={{ pt: 5, pl: 5, pr: 5 }}>
-      <Typography variant="h4">Artists</Typography>
-      <Stack spacing={2}>
-      {artists}
-      </Stack>
-    </Page>
-  );
+	return (
+		<Page config={{ pt: 5, pl: 5, pr: 5 }}>
+			<TitlePage title="Artists" />
+			<Grid container spacing={2}>
+				{artists?.map(artist => (
+					<Grid item key={artist.artistId} xs={4} xl={2} md={3}>
+						<ArtistCard artist={artist} />
+					</Grid>
+				))}
+			</Grid>
+		</Page>
+	);
 }

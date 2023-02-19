@@ -12,52 +12,60 @@ import Playlists from './pages/Playlists';
 import MyFavoritesTunes from './pages/MyFavoritesTunes';
 import Artists from './pages/Artists';
 import Albums from './pages/Albums';
+import ArtistProfile from './pages/ArtistProfile';
+import Album from './pages/Album';
 
 export default function Router() {
-  const location = useLocation();
-  console.log(location.pathname);
-  return useRoutes([
-    {
-      path: '/',
-      element: <Dashboard />,
-      children: [
-        {
-          path: '/',
-          element: <Navigate to="my-music" />,
-        },
-        {
-          path: 'my-music',
-          element: <MyMusic />,
-        },
-        {
-          path: 'playlists',
-          element: <Playlists />,
-        },
-        {
-          path: 'playlists/:name',
-          element: <PlaylistContent />,
-        },
-        {
-          path: 'favorites-tunes',
-          element: <MyFavoritesTunes />,
-        },
-        {
-          path: 'register-tune',
-          element: <RegisterSong />,
-        },
-        {
-          path: '/artists',
-          element: <Artists />,
-        },
-        {
-          path: '/albums/:id',
-          element: <Albums />,
-        },
-        {
-          path: '/songs/:id',
-          element: <Songs />,
-        },
-      ],
-    },
-  ]);
+	const location = useLocation();
+	console.log(location.pathname);
+	return useRoutes([
+		{
+			path: '/',
+			element: <Dashboard />,
+			children: [
+				{
+					path: '/',
+					element: <Navigate to="my-music" />,
+				},
+				{
+					path: 'my-music',
+					element: <MyMusic />,
+				},
+				{
+					path: 'playlists',
+					element: <Playlists />,
+				},
+				{
+					path: 'playlists/:name',
+					element: <PlaylistContent />,
+				},
+				{
+					path: 'favorites-tunes',
+					element: <MyFavoritesTunes />,
+				},
+				{
+					path: 'register-tune',
+					element: <RegisterSong />,
+				},
+				{
+					path: '/artists',
+					element: <Artists />,
+				},
+				{
+					path: '/artist-profile/:id',
+					element: <ArtistProfile />,
+				},
+				{
+					path: '/album/:id',
+					element: <Album />,
+				},
+				{
+					path: '/songs',
+					element: <Songs />,
+				},
+			],
+		},
+	]);
 }
+
+// 'http:localhost:3000/src/assets'
