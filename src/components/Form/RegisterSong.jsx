@@ -4,14 +4,14 @@ import React from 'react';
 import * as Yup from 'yup';
 
 
-export default function AlbumForm() {
+export default function SongRegister() {
   const formik = useFormik({
     initialValues: {
       title: '',
       genere: '',
-      artist: '',
-      album: '',
-      duration: '',
+      yearLaunch: '',
+      coverImage: '',
+      arraySong: '',
       linkMusic: '',
     },
     enableReinitialize: true,
