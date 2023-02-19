@@ -3,6 +3,7 @@ import React from 'react';
 import NavigationBtn from '../components/NavigationBtn';
 import { db } from '../services/db';
 import { useLiveQuery } from 'dexie-react-hooks';
+import AddItem from '../components/Dialog/AddItem';
 
 export default function Sidebar() {
 	const artistList = useLiveQuery(() => db.artists?.toArray());
@@ -34,7 +35,7 @@ export default function Sidebar() {
 			}}>
 			<Toolbar />
 			<Box sx={{ display: 'flex', flexDirection: 'column' }}>
-				<Button>Agregar</Button>
+				<AddItem />
 				<NavigationBtn label="All Artists" route="/artists" />
 			</Box>
 			{/* <Box sx={{ mr: 1, display: "flex", flexDirection: "column"}}> */}
