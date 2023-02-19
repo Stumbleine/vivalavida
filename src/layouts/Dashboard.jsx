@@ -8,7 +8,7 @@ import { Box } from '@mui/material';
 function Dashboard() {
 	const [openSideBar, setOpenSideBar] = useState(false);
 	return (
-		<Box sx={{ height: '100vh' }}>
+		<Box sx={{ height: '100vh', position: 'relative' }}>
 			<Navbar handleOpenSideBar={() => setOpenSideBar(true)} />
 			<Sidebar open={openSideBar} handleCloseSideBar={() => setOpenSideBar(false)} />
 			<>

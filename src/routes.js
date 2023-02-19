@@ -12,52 +12,61 @@ import Playlists from './pages/Playlists';
 import MyFavoritesTunes from './pages/MyFavoritesTunes';
 import Artists from './pages/Artists';
 import Albums from './pages/Albums';
+import ArtistProfile from './pages/ArtistProfile';
 
 export default function Router() {
-  const location = useLocation();
-  console.log(location.pathname);
-  return useRoutes([
-    {
-      path: '/',
-      element: <Dashboard />,
-      children: [
-        {
-          path: '/',
-          element: <Navigate to="my-music" />,
-        },
-        {
-          path: 'my-music',
-          element: <MyMusic />,
-        },
-        {
-          path: 'playlists',
-          element: <Playlists />,
-        },
-        {
-          path: 'playlists/:name',
-          element: <PlaylistContent />,
-        },
-        {
-          path: 'favorites-tunes',
-          element: <MyFavoritesTunes />,
-        },
-        {
-          path: 'register-tune',
-          element: <RegisterSong />,
-        },
-        {
-          path: '/artists',
-          element: <Artists />,
-        },
-        {
-          path: '/albums/:id',
-          element: <Albums />,
-        },
-        {
-          path: '/songs/:id',
-          element: <Songs />,
-        },
-      ],
-    },
-  ]);
+	const location = useLocation();
+	console.log(location.pathname);
+	return useRoutes([
+		{
+			path: '/',
+			element: <Dashboard />,
+			children: [
+				{
+					path: '/',
+					element: <Navigate to="my-music" />,
+				},
+				{
+					path: 'my-music',
+					element: <MyMusic />,
+				},
+				{
+					path: 'playlists',
+					element: <Playlists />,
+				},
+				{
+					path: 'playlists/:name',
+					element: <PlaylistContent />,
+				},
+				{
+					path: 'favorites-tunes',
+					element: <MyFavoritesTunes />,
+				},
+				{
+					path: 'register-tune',
+					element: <RegisterSong />,
+				},
+				{
+					path: '/artists',
+					element: <Artists />,
+				},
+				{
+					path: '/artist-profile/:id',
+					element: <ArtistProfile />,
+					children: [
+						{ path: 'albums', element: <Albums /> },
+						{ path: 'songs', element: <Songs /> },
+					],
+				},
+				{
+					path: '/album/:id',
+					element: <Albums />,
+				},
+				{
+					path: '/songs',
+					element: <Songs />,
+				},
+			],
+		},
+	]);
 }
