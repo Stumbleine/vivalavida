@@ -3,12 +3,25 @@ import TitlePage from '../components/TitlePage';
 import { useLiveQuery } from 'dexie-react-hooks';
 
 import Page from '../components/Page';
-import { Box, Chip, Paper, Tab, Tabs, Typography } from '@mui/material';
+import {
+	Box,
+	Chip,
+	Fab,
+	Paper,
+	Stack,
+	SvgIcon,
+	Tab,
+	Tabs,
+	Typography,
+} from '@mui/material';
 import { useLocation, useNavigate, useParams } from 'react-router-dom';
 import { db } from '../services/db';
 import { useDispatch, useSelector } from 'react-redux';
 import { setProfile } from '../store/ArtistSlice';
 import Albums from '../components/Containers/Albums';
+import SongsTable from '../components/Table/SongsTable';
+import { ReactComponent as Play } from '../assets/icons/play.svg';
+
 export default function ArtistProfile() {
 	const { artistId } = useParams();
 	const {
@@ -27,13 +40,20 @@ export default function ArtistProfile() {
 	};
 
 	const { artistProfile } = useSelector(state => state.artist);
+	// const { artistProfile } = useSelector(state => state.artist);
+
 	const dispatch = useDispatch();
 	useEffect(() => {
 		const fetchData = async () => {
 			try {
 				const albums = await db.album.toArray();
 				const songs = await db.song.toArray();
+				// db.song(idArtist)
+				// Modificada = songs.foreach(song=>(
+				// 	  {...song, imageCover:album.imageCover,artistName:artist.name}
+				// 	 )
 
+				// 	)
 				dispatch(setProfile({ artist, albums, songs }));
 			} catch (error) {
 				console.log(error);
@@ -53,10 +73,12 @@ export default function ArtistProfile() {
 						borderTopLeftRadius: 'inherit',
 						borderTopRightRadius: 'inherit',
 					}}>
-					<Box
+					<Stack
+						direction="row"
 						sx={{
 							display: 'flex',
-							alignItems: 'center',
+							width: '85%',
+							// alignItems: 'center',
 							position: 'absolute',
 							bottom: 20,
 							left: 20,
@@ -66,12 +88,12 @@ export default function ArtistProfile() {
 							src={artist.image}
 							sx={{ width: 150, height: 150, borderRadius: 5, objectFit: 'cover' }}
 						/>
-						<Box sx={{ ml: 2 }}>
+						<Box sx={{ ml: 2, flexGrow: 1 }}>
 							<Typography>{artist?.name}</Typography>
 							<Box sx={{ mt: 1 }}>
 								{genders?.map((gender, index) => (
 									<Chip
-										sx={{ mx: 0.5 }}
+										sx={{ mr: 0.5 }}
 										key={index}
 										label={gender}
 										size="small"
@@ -82,22 +104,42 @@ export default function ArtistProfile() {
 							<Box sx={{ mt: 1 }}>
 								{menbers?.map((member, index) => (
 									<Typography
-										variant="body2"
-										sx={{ mr: 0.5, display: 'inline-block' }}
+										// variant="body2"
+										sx={{ mr: 0.5, display: 'inline' }}
 										key={index}
 										size="small">
 										{member}
+										{index !== menbers.length - 1 && ', '}
 									</Typography>
 								))}
 							</Box>
 							<Typography
-								variant="caption"
+								variant="body2"
 								component="a"
+								sx={{ textDecoration: 'none', color: 'text.secondary' }}
 								href={'https://www.coldplay.com/homepage/'}>
-								https://www.coldplay.com
+								ir al sitio web
 							</Typography>
 						</Box>
-					</Box>
+						<Box
+							sx={{
+								display: 'flex',
+								alignItems: 'flex-end',
+								justifyContent: 'flex-end',
+							}}>
+							<Fab color="primary">
+								<SvgIcon
+									sx={{
+										color: 'text.icon',
+										'&:hover': {
+											color: 'terciary.main',
+										},
+									}}>
+									<Play />
+								</SvgIcon>
+							</Fab>
+						</Box>
+					</Stack>
 				</Box>
 				<Box>
 					<Tabs
@@ -106,20 +148,12 @@ export default function ArtistProfile() {
 						textColor="secondary"
 						indicatorColor="secondary"
 						aria-label="secondary tabs example">
-						<Tab label="Albums" value="albums">
-							<Typography>asss</Typography>
-						</Tab>
+						<Tab label="Albums" value="albums"></Tab>
 						<Tab label="All songs" value="songs" />
 					</Tabs>
 					<Box sx={{ padding: 2 }}>
-						{tabValue === 'albums' && (
-							<>{openAlbum ? <Box></Box> : <Albums albums={artistProfile?.albums} />}</>
-						)}
-						{tabValue === 'songs' && (
-							<Box>
-								<Typography>The second tab</Typography>
-							</Box>
-						)}
+						{tabValue === 'albums' && <Albums albums={artistProfile?.albums} />}
+						{tabValue === 'songs' && <SongsTable songs={artistProfile?.songs} />}
 					</Box>
 				</Box>
 			</Paper>

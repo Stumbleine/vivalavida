@@ -11,10 +11,10 @@ import {
 } from '@mui/material';
 import React, { useEffect, useRef, useState } from 'react';
 import { ReactComponent as Play } from '../../assets/icons/play.svg';
+import { ReactComponent as Pause } from '../../assets/icons/pause.svg';
 import { ReactComponent as Previus } from '../../assets/icons/backward.svg';
 import { ReactComponent as Next } from '../../assets/icons/forward.svg';
 import { ReactComponent as Repeat } from '../../assets/icons/repeat.svg';
-import { ReactComponent as Pause } from '../../assets/icons/pause.svg';
 import { ReactComponent as VolumeHigh } from '../../assets/icons/volume-high.svg';
 import { ReactComponent as VolumeLow } from '../../assets/icons/volume-low.svg';
 import { ReactComponent as VolumeOff } from '../../assets/icons/volume-off.svg';

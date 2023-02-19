@@ -13,6 +13,7 @@ import MyFavoritesTunes from './pages/MyFavoritesTunes';
 import Artists from './pages/Artists';
 import Albums from './pages/Albums';
 import ArtistProfile from './pages/ArtistProfile';
+import Album from './pages/Album';
 
 export default function Router() {
 	const location = useLocation();
@@ -53,14 +54,10 @@ export default function Router() {
 				{
 					path: '/artist-profile/:id',
 					element: <ArtistProfile />,
-					children: [
-						{ path: 'albums', element: <Albums /> },
-						{ path: 'songs', element: <Songs /> },
-					],
 				},
 				{
 					path: '/album/:id',
-					element: <Albums />,
+					element: <Album />,
 				},
 				{
 					path: '/songs',
@@ -70,3 +67,5 @@ export default function Router() {
 		},
 	]);
 }
+
+// 'http:localhost:3000/src/assets'

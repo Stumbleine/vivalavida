@@ -24,13 +24,13 @@ export default function AlbumCard({ album }) {
 				<Typography variant="caption" sx={{ color: 'gray' }}>
 					{album.gender}
 				</Typography>
-				<CardActions sx={{ p: 0 }}>
+				<CardActions sx={{ p: 0, justifyContent: 'flex-end', mt: 1 }}>
 					<Button
-						variant="outlined"
+						variant="contained"
 						size="small"
 						sx={{ color: 'white' }}
-						onClick={() => navigate(`/songs/${album.albumId}`)}>
-						View songs
+						onClick={() => navigate(`/album/${album.albumId}`, { state: { album } })}>
+						View album
 					</Button>
 				</CardActions>
 			</CardContent>

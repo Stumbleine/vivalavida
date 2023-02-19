@@ -6,7 +6,7 @@ export default function Albums({ albums }) {
 	return (
 		<Grid container spacing={2}>
 			{albums?.map(album => (
-				<Grid key={album.id} item xs={12} md={6} xl={4}>
+				<Grid key={album.albumId} item xs={12} md={6} xl={4}>
 					<AlbumCard album={album} />
 				</Grid>
 			))}
