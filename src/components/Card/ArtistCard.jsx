@@ -5,10 +5,10 @@ import { useNavigate } from "react-router-dom";
 export default function ArtistCard ({artist}) {
 
   const navigate = useNavigate();
-  let i = 0;
-  const genders = artist.genders.map((gender) => {
+ 
+  const genders = artist.genders.map((gender, index) => {
     return (
-      <Chip key={i++} label={gender} variant="filled" />
+      <Chip key={index} label={gender} variant="filled" />
     )
   })
 

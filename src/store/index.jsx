@@ -3,7 +3,9 @@ import AccountSlice from "./AccountSlice";
 import AuthSlice from "./AuthSlice";
 import SongSlice from "./SongSlice";
 import PlayerSlice from "./PlayerSlice";
+import ArtistSlice from "./ArtistSlice";
 import SettingSlice from "./SettingSlice";
+import AlbumSlice from "./AlbumSlice";
 
 const localStorageMiddleware = ({ getState }) => {
   return (next) => (action) => {
@@ -32,9 +34,10 @@ export default configureStore({
     song: SongSlice,
     player: PlayerSlice,
     setting: SettingSlice,
-    // artist: artistSlice
+    artist: ArtistSlice,
     // users: UsersSlice,
-    // album: albumSlice
+    album: AlbumSlice,
+
   },
   middleware: (curryGetDefaultMiddleware) =>
     curryGetDefaultMiddleware().concat(localStorageMiddleware),

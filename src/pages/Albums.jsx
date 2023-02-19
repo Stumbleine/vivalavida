@@ -1,38 +1,53 @@
-import React from 'react'
 import { db } from '../db'
-import { useLiveQuery } from 'dexie-react-hooks';
-import { useNavigate, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import Page from '../components/Page';
 import AlbumCard from '../components/Card/AlbumCard';
 import { Stack } from '@mui/system';
-import { Typography, AppBar, Toolbar } from '@mui/material';
+import AlbumHeader from '../components/Header/AlbumHeader';
+import { useEffect } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import { initAlbums, addAlbum } from '../store/AlbumSlice';
+
 
 export default function Albums() {
 
-  const navigate = useNavigate();
+  const dispatch = useDispatch();
 
-  async function addAlbum() {
-    await db.albums.add({
-    title: 'Album 2',
-    artistId: 3,
-    gender: 'rock',
-    launchYear: '2009',
-    coverImage: 'https://i.imgflip.com/4t0m5.jpg',
-    songs: ['new year', 'old year'],
-  });
-  }
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const result = await db.albums.toArray();
+        dispatch(initAlbums(result));
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    fetchData();
+  }, []);
+
+  const albumList = useSelector(state => state.album);
+  const artistList = useSelector(state => state.artist);
+  
+  const saveAlbum = async () => {
+    try {
+      const album = {
+        title: 'Album 7',
+        artistId: 1,
+        gender: 'rock',
+        launchYear: '2009',
+        coverImage: 'https://i.imgflip.com/4t0m5.jpg',
+        songs: ['new year', 'old year'],
+      }
+      dispatch(addAlbum(album));
+      await db.albums.add(album);
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   const { id } = useParams();
 
-   const artistList = useLiveQuery(
-    () => db.artists.toArray()
-  );
-
   const artist = artistList?.find((artist) => artist.artistId === parseInt(id))
-
-  const albumList = useLiveQuery(
-    () => db.albums.toArray()
-  );
 
   const albumsForArtist = albumList?.filter((album) => {
       return album.artistId === parseInt(id);
@@ -45,17 +60,11 @@ export default function Albums() {
   return (
     <Page config={{ pt: 5, pl: 5, pr: 5 }}>
       <div>
-          <AppBar position="static" sx={{background: `url(${artist?.image})`, backgroundSize: 'cover', backgroundPosition: 'center', marginBottom: '20px', height: '30vh'}}>
-            <Toolbar sx={{display: 'flex', alignItems: 'flex-end', height: '100%', backdropFilter: 'blur(4px)'}}>
-              <Typography variant="h1" sx={{fontSize: 28, fontWeight: 'bold', color: 'white', marginBottom: 8,}}>
-                {artist?.name}
-              </Typography>
-            </Toolbar>
-          </AppBar>
+          <AlbumHeader key={artist?.artistId} artist={artist}/>
           <Stack spacing={2}>
             {albums}
           </Stack>
-        <button onClick={addAlbum}>Add Album</button>
+        <button onClick={saveAlbum}>Add Album</button>
       </div>
     </Page>  
   );

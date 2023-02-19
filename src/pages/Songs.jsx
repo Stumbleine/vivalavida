@@ -1,36 +1,53 @@
-import React from "react";
+import {useEffect} from "react";
 import { db } from '../db'
-import { useLiveQuery } from 'dexie-react-hooks';
+import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import Page from "../components/Page";
-import { List, ListItem, ListItemText, Typography, AppBar, Toolbar, Avatar } from "@mui/material";
+import { List, ListItem, ListItemText, Typography} from "@mui/material";
+import SongHeader from '../components/Header/SongHeader';
+import { initSongs, addSong } from "../store/SongSlice";
 
 export default function Songs() {
 
-  async function addSong() {
-    await db.songs.add({
-    title: 'Song 6',
-    gender: 'Rock',
-    launchYear: '2009',
-    artistId: 1,
-    albumId: 2,
-    duration: '20',
-    link: 'www.google.com',
-  }) 
-  }
+  const saveSong = async () => {
+    try {
+      const song = {
+        title: 'Song 4',
+        gender: 'Rock',
+        launchYear: '2009',
+        artistId: 1,
+        albumId: 1,
+        duration: '20',
+        link: 'www.google.com',
+      }
+      dispatch(addSong(song));
+      await db.songs.add(song);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const result = await db.songs.toArray();
+        dispatch(initSongs(result));
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    fetchData();
+  }, []);
 
   const { id } = useParams();
 
-  const albumList = useLiveQuery(
-    () => db.albums.toArray()
-  );
+  const albumList = useSelector(state => state.album);
+  const songList = useSelector(state => state.song);
 
   const album = albumList?.find((album) => album.albumId === parseInt(id));
 
-  const songList = useLiveQuery(
-    () => db.songs.toArray()
-  );
-  
   const songsForAlbum = songList?.filter((song) => {
     return song.albumId === parseInt(id);
   })
@@ -39,7 +56,7 @@ export default function Songs() {
   const songs = songsForAlbum?.map((song) => {
     i++;
     return (
-      <List>
+      <List key={song.title}>
         <ListItem key={song.title}>
            <Typography component='span' variant='body2' sx={{ marginRight: '10px' }}>{i + '.'}</Typography>
           <ListItemText primary={song.title} secondary={song.duration} />
@@ -51,21 +68,13 @@ export default function Songs() {
   return (
     <Page config={{ pt: 5, pl: 5, pr: 5 }}>
       <div>
-        <AppBar position="static" sx={{background: 'white', color: 'black'}}>
-          <Toolbar>
-        <Avatar src={album?.coverImage} sx={{ width: 80, height: 80, marginRight: 16}} />
-        <Typography variant="h1" sx={{fontSize: 24, fontWeight: 'bold'}}>
-          {album?.title}
-        </Typography>
-      </Toolbar>
-    </AppBar>
-        
+        <SongHeader key={album?.albumId} album={album}/>
         {songsForAlbum && songsForAlbum.length > 0 ? (
           <div>{songs}</div>
         ) : (
           <p>There are no songs</p>
         )}
-        <button onClick={addSong}>Add Song</button>
+        <button onClick={saveSong}>Add Song</button>
       </div>
     </Page>  
   );
