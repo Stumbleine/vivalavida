@@ -21,8 +21,9 @@ export default function ProgressBar({
 				// background: 'red',
 				flexGrow: 1,
 			}}>
-			<Typography color="textSecondary" sx={{ width: 30, textAlign: 'center' }}>
-				{currentTime.min}:{currentTime.sec}
+			<Typography color="textSecondary" sx={{ width: 40, textAlign: 'center' }}>
+				{currentTime.min < 10 ? '0' + currentTime.min : currentTime.min}:
+				{currentTime.sec < 10 ? '0' + currentTime.sec : currentTime.sec}
 			</Typography>
 			<Slider
 				aria-label="time-indicator"
@@ -71,7 +72,8 @@ export default function ProgressBar({
 				}}
 			/>
 			<Typography color="textSecondary">
-				{totalTime.min}:{totalTime.sec}
+				{totalTime.min < 10 ? '0' + totalTime.min : totalTime.min}:
+				{totalTime.sec < 10 ? '0' + totalTime.sec : totalTime.sec}
 			</Typography>
 		</Box>
 	);

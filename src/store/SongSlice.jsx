@@ -1,21 +1,18 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice } from '@reduxjs/toolkit';
 
 const initialState = {
-  isAuth: false,
-  isAuthFailed: true,
-  token: null,
+	songs: null,
 };
 
-const authSlice = createSlice({
-  name: "auth",
-  initialState,
-  reducers: {
-    setSongs: (state) => {
-      state.isAuth = true;
-      state.isAuthFailed = false;
-    },
-  },
+const songSlice = createSlice({
+	name: 'song',
+	initialState,
+	reducers: {
+		setSongs: (state, { payload }) => {
+			state.songs = payload;
+		},
+	},
 });
 
-export const { setAuth, setAuthFailed, setLogout } = authSlice.actions;
-export default authSlice.reducer;
+export const { setSongs } = songSlice.actions;
+export default songSlice.reducer;

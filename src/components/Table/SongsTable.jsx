@@ -41,7 +41,7 @@ export default function SongsTable({ songs }) {
 	};
 
 	return (
-		<TableContainer>
+		<TableContainer sx={{ bgcolor: 'primary.main' }}>
 			<Table>
 				<TableHead sx={{ bgcolor: 'primary.main' }}>
 					<TableRow>

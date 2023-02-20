@@ -23,24 +23,16 @@ import SongsTable from '../components/Table/SongsTable';
 import { ReactComponent as Play } from '../assets/icons/play.svg';
 
 export default function ArtistProfile() {
-	const { artistId } = useParams();
 	const {
 		state: { artist },
 	} = useLocation();
-	// console.log(state);
-	const genders = ['Rock', 'Rock Alternativo', 'Pop'];
-	const menbers = ['Chris Martin', 'Jonny Buckland', 'Guy Berryman'];
 
 	const [tabValue, setTabValue] = React.useState('albums');
-	const [albumSelected, setAlbumSelected] = React.useState(null);
-	const [openAlbum, setOpenAlbum] = React.useState(false);
+	const { artistProfile } = useSelector(state => state.artist);
 
 	const handleTabChange = (event, newValue) => {
 		setTabValue(newValue);
 	};
-
-	const { artistProfile } = useSelector(state => state.artist);
-	// const { artistProfile } = useSelector(state => state.artist);
 
 	const dispatch = useDispatch();
 	useEffect(() => {
@@ -48,12 +40,6 @@ export default function ArtistProfile() {
 			try {
 				const albums = await db.album.toArray();
 				const songs = await db.song.toArray();
-				// db.song(idArtist)
-				// Modificada = songs.foreach(song=>(
-				// 	  {...song, imageCover:album.imageCover,artistName:artist.name}
-				// 	 )
-
-				// 	)
 				dispatch(setProfile({ artist, albums, songs }));
 			} catch (error) {
 				console.log(error);
@@ -63,12 +49,12 @@ export default function ArtistProfile() {
 	}, []);
 	return (
 		<Page config={{ pt: 5, pl: 5, pr: 5 }}>
-			<TitlePage title="Profile" />
-			<Paper elevation={0} sx={{ height: 'auto', borderRadius: 5 }}>
+			<Paper elevation={0} sx={{ height: 'auto', borderRadius: 5, padding: 2 }}>
+				{/* <TitlePage title="Profile" /> */}
 				<Box
 					sx={{
 						width: '100%',
-						height: 250,
+						height: 220,
 						position: 'relative',
 						borderTopLeftRadius: 'inherit',
 						borderTopRightRadius: 'inherit',
@@ -91,7 +77,7 @@ export default function ArtistProfile() {
 						<Box sx={{ ml: 2, flexGrow: 1 }}>
 							<Typography>{artist?.name}</Typography>
 							<Box sx={{ mt: 1 }}>
-								{genders?.map((gender, index) => (
+								{artist.genders?.map((gender, index) => (
 									<Chip
 										sx={{ mr: 0.5 }}
 										key={index}
@@ -102,14 +88,14 @@ export default function ArtistProfile() {
 								))}
 							</Box>
 							<Box sx={{ mt: 1 }}>
-								{menbers?.map((member, index) => (
+								{artist?.menbers?.map((member, index) => (
 									<Typography
 										// variant="body2"
 										sx={{ mr: 0.5, display: 'inline' }}
 										key={index}
 										size="small">
 										{member}
-										{index !== menbers.length - 1 && ', '}
+										{index !== artist.menbers.length - 1 && ', '}
 									</Typography>
 								))}
 							</Box>
