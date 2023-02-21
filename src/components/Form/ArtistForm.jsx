@@ -33,9 +33,9 @@ export default function ArtistForm() {
 				const formData = new FormData();
 				formData.append('image', selectedFile);
 				await fetch('http://localhost:4000/api/image', {
-        	method: 'POST',
-        	body: formData,
-      	}).then(window.location.reload(false));
+					method: 'POST',
+					body: formData,
+				}).then(window.location.reload(false));
 			};
 			add();
 		},
