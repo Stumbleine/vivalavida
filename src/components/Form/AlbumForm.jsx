@@ -28,7 +28,7 @@ export default function AlbumForm() {
 
 	const formik = useFormik({
 		initialValues: {
-			artistId: 0,
+			artistId: 1,
 			title: '',
 			gender: '',
 			yearLaunch: '',
