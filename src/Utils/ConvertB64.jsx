@@ -1,7 +1,7 @@
 export const convertToB64 = file => {
 	return new Promise((resolve, reject) => {
 		const reader = new FileReader();
-		reader.readAsDataURL(file[0]);
+		reader.readAsDataURL(file);
 		reader.onload = () => {
 			resolve(reader.result);
 		};
