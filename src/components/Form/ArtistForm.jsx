@@ -1,65 +1,107 @@
-import { Button, Stack, TextField } from '@mui/material';
-import { Form, FormikProvider, useFormik } from 'formik';
-import React from 'react';
+import { Button, Stack, TextField, Select, MenuItem, Input, Chip, InputLabel } from '@mui/material';
+import { Field, Form, FormikProvider, useFormik } from 'formik';
+import {React, useState} from 'react';
 import * as Yup from 'yup';
 import { addArtist } from '../../services/artist';
+import {convertToB64} from '../../Utils/ConvertB64';
 
 export default function ArtistForm() {
+
+	const [selectedFile, setSelectedFile] = useState(null);
+
 	const formik = useFormik({
 		initialValues: {
 			name: '',
-			genere: '',
-			integranst: '',
-			webSite: '',
+			genders: [],
+			members: '',
+			website: '',
 			image: '',
 		},
 		enableReinitialize: true,
 		validationSchema: Yup.object().shape({
-			title: Yup.string().required('El titulo es requerido'),
-			gender: Yup.string().required('El genero es requerido'),
-			yearLaunch: Yup.string().required('El año de lanzamiento es requerida'),
-			coverImage: Yup.string().required('la imagen de la portada es requerida'),
+			name: Yup.string().required('El titulo es requerido'),
+			genders: Yup.array().min(1, 'Al menos un género es requerido'),
+			members: Yup.string().required('Los miembros son requeridos'),
+			website: Yup.string().required('El sitio web es requerido'),
+			// image: Yup.mixed().required('La imagen es requerida')
 		}),
 		onSubmit: values => {
 			const add = async () => {
-				await addArtist(values);
+				const b64 = await convertToB64(selectedFile);
+				console.log({ ...values, image: b64 });
+				await addArtist({ ...values, image: b64 });
+				const formData = new FormData();
+				formData.append('image', selectedFile);
+				await fetch('http://localhost:4000/api/image', {
+        	method: 'POST',
+        	body: formData,
+      	}).then(window.location.reload(false));
 			};
 			add();
 		},
 	});
 	const { getFieldProps, values, errors, touched, isSubmitting } = formik;
+
+	const handleChange = (event) => {
+  	const { value } = event.target;
+  	formik.setFieldValue('genders', value);
+  };
+
+	const handleFileChange = (event) => {
+    console.log(event.target.files[0]);
+    setSelectedFile(event.target.files[0]);
+  };
+
 	return (
 		<FormikProvider value={formik}>
 			<Form autoComplete>
 				<Stack direction="column" spacing={2}>
 					<TextField
 						fullWidth
-						label="Titulo"
-						{...getFieldProps('title')}
-						error={Boolean(touched.title && errors.title)}
-						helperText={touched.title && errors.title}
+						label="Name"
+						{...getFieldProps('name')}
+						error={Boolean(touched.name && errors.name)}
+						helperText={touched.name && errors.name}
+					/>
+					<InputLabel id="genres-label">Géneros</InputLabel>
+          <Select
+            labelId="genres-label"
+            id="genders"
+            fullWidth
+            multiple
+            value={values.genders}
+            onChange={handleChange}
+            error={Boolean(touched.genders && errors.genders)}
+            helperText={touched.genders && errors.genders}
+          >
+            <MenuItem value="rock">Rock</MenuItem>
+            <MenuItem value="pop">Pop</MenuItem>
+            <MenuItem value="jazz">Jazz</MenuItem>
+            <MenuItem value="reggae">Reggae</MenuItem>
+            <MenuItem value="metal">Metal</MenuItem>
+						<MenuItem value="edm">EDM</MenuItem>
+          </Select>
+					<TextField
+						fullWidth
+						label="Miembros"
+						{...getFieldProps('members')}
+						error={Boolean(touched.members && errors.members)}
+						helperText={touched.members && errors.members}
 					/>
 					<TextField
 						fullWidth
-						label="Genero"
-						{...getFieldProps('gender')}
-						error={Boolean(touched.gender && errors.gender)}
-						helperText={touched.gender && errors.gender}
+						label="Página Web"
+						{...getFieldProps('website')}
+						error={Boolean(touched.website && errors.website)}
+						helperText={touched.website && errors.website}
 					/>
-					<TextField
-						fullWidth
-						label="Año de lanzamiento"
-						{...getFieldProps('yearLaunch')}
-						error={Boolean(touched.yearLaunch && errors.yearLaunch)}
-						helperText={touched.yearLaunch && errors.yearLaunch}
-					/>
-					<TextField
-						fullWidth
-						label="Imagen de Portada"
-						{...getFieldProps('coverImage')}
-						error={Boolean(touched.coverImage && errors.coverImage)}
-						helperText={touched.coverImage && errors.coverImage}
-					/>
+					<input
+            type="file"
+            label="Imagen"
+            onChange={(event) => {
+              handleFileChange(event)
+            }}
+          />
 					<Button type="submit" variant="contained">
 						Guardar
 					</Button>
