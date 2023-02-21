@@ -41,7 +41,7 @@ export default [
 		title: 'Karma',
 		gender: 'Pop',
 		launchYear: '2022',
-		link: '../assets/songs/Safe-And-Sound.m4a',
+		link: '/songs/Safe-And-Sound.m4a',
 		duration: '3:24',
 	},
 	{
@@ -50,7 +50,7 @@ export default [
 		title: 'Cruel Summer',
 		gender: 'Pop',
 		launchYear: '2019',
-		link: '../assets/songs/Safe-And-Sound.m4a',
+		link: '/songs/Safe-And-Sound.m4a',
 		duration: '2:58',
 	},
 	{
@@ -59,7 +59,7 @@ export default [
 		title: 'The Man',
 		gender: 'Pop',
 		launchYear: '2019',
-		link: '../assets/songs/Safe-And-Sound.m4a',
+		link: '/songs/Safe-And-Sound.m4a',
 		duration: '3:38',
 	},
 	{
@@ -68,7 +68,7 @@ export default [
 		title: 'Lover',
 		gender: 'Pop',
 		launchYear: '2019',
-		link: '../assets/songs/Safe-And-Sound.m4a',
+		link: '/songs/Safe-And-Sound.m4a',
 		duration: '3:20',
 	},
 	{
@@ -77,7 +77,7 @@ export default [
 		title: 'The Archer',
 		gender: 'Pop',
 		launchYear: '2019',
-		link: '../assets/songs/Safe-And-Sound.m4a',
+		link: '/songs/Safe-And-Sound.m4a',
 		duration: '2:54',
 	},
 	{
@@ -86,7 +86,7 @@ export default [
 		title: 'Fix You',
 		gender: 'Post-Britpop',
 		launchYear: '2005',
-		link: '../assets/songs/Viva-La-Vida.m4a',
+		link: '/songs/Viva-La-Vida.m4a',
 		duration: '2:54',
 	},
 	{
@@ -95,7 +95,7 @@ export default [
 		title: 'Fix You',
 		gender: 'Post-Britpop',
 		launchYear: '2005',
-		link: '../assets/songs/Fix-you.m4a',
+		link: '/songs/Fix-you.m4a',
 		duration: '2:54',
 	},
 	{
@@ -104,7 +104,7 @@ export default [
 		title: 'Talk',
 		gender: 'Post-Britpop',
 		launchYear: '2005',
-		link: '../assets/songs/Talk.m4a',
+		link: '/songs/Talk.m4a',
 		duration: '3:54',
 	},
 	{
@@ -113,7 +113,7 @@ export default [
 		title: 'Speed of Sound',
 		gender: 'Post-Britpop',
 		launchYear: '2005',
-		link: '../assets/songs/Speed-of-Sound.m4a',
+		link: '/songs/Speed-of-Sound.m4a',
 		duration: '3:02',
 	},
 	{
@@ -122,7 +122,7 @@ export default [
 		title: 'The Hardest Part',
 		gender: 'Post-Britpop',
 		launchYear: '2005',
-		link: '../assets/songs/The-Hardest-Part.m4a',
+		link: '/songs/The-Hardest-Part.m4a',
 		duration: '3:10',
 	},
 	{
@@ -131,7 +131,7 @@ export default [
 		title: 'A Message',
 		gender: 'Post-Britpop',
 		launchYear: '2005',
-		link: '../assets/songs/A-Message.m4a',
+		link: '/songs/A-Message.m4a',
 		duration: '4:45',
 	},
 	{
@@ -140,7 +140,7 @@ export default [
 		title: 'Always in my Head',
 		gender: 'Post-Britpop',
 		launchYear: '2014',
-		link: '../assets/songs/Always-in-My-Head.m4a',
+		link: '/songs/Always-in-My-Head.m4a',
 		duration: '3:36',
 	},
 	{
@@ -149,7 +149,7 @@ export default [
 		title: 'Magic',
 		gender: 'Post-Britpop',
 		launchYear: '2014',
-		link: '../assets/songs/Magic.m4a',
+		link: '/songs/Magic.m4a',
 		duration: '4:45',
 	},
 	{
@@ -158,7 +158,7 @@ export default [
 		title: 'Ink',
 		gender: 'Post-Britpop',
 		launchYear: '2014',
-		link: '../assets/songs/Ink.m4a',
+		link: '/songs/Ink.m4a',
 		duration: '3:48',
 	},
 	{
@@ -167,7 +167,7 @@ export default [
 		title: 'Midnight',
 		gender: 'Post-Britpop',
 		launchYear: '2014',
-		link: '../assets/songs/Midnight.m4a',
+		link: '/songs/Midnight.m4a',
 		duration: '4:54',
 	},
 	{
@@ -176,7 +176,7 @@ export default [
 		title: 'A Sky Full of Stars',
 		gender: 'Post-Britpop',
 		launchYear: '2014',
-		link: '../assets/songs/A-Sky-Full-of-Stars.m4a',
+		link: '/songs/A-Sky-Full-of-Stars.m4a',
 		duration: '4:27',
 	},
 	// {

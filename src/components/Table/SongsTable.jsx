@@ -28,7 +28,7 @@ export default function SongsTable({ songs }) {
 		isPlaying: false,
 	});
 	const onHoverSong = song => {
-		console.log('hover', song);
+		// console.log('hover', song);
 		setHoverSong({ showPlay: true, songId: song.songId, isPlaying: false });
 	};
 
@@ -41,7 +41,7 @@ export default function SongsTable({ songs }) {
 	};
 
 	return (
-		<TableContainer sx={{ bgcolor: 'primary.main' }}>
+		<TableContainer sx={{ bgcolor: 'primary.main', borderRadius: 5 }}>
 			<Table>
 				<TableHead sx={{ bgcolor: 'primary.main' }}>
 					<TableRow>

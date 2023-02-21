@@ -3,12 +3,9 @@ import React, { useEffect, useRef, useState } from 'react';
 import { songMock } from '../mocks/albumsMock';
 import { orange } from '@mui/material/colors';
 import SongSummary from '../components/Containers/SongSummary';
-import PlayerActions from '../components/Containers/PlayerActions';
 import ProgressBar from '../components/Containers/ProgressBar';
 import VolumeController from '../components/Menu/VolumeController';
 import PlayerController from '../components/Containers/PlayerController';
-import Viva from '../assets/songs/Lovers-in-Japan.m4a';
-import safesound from '../assets/songs/Safe-And-Sound.m4a';
 
 import useSound from 'use-sound';
 import { useDispatch, useSelector } from 'react-redux';
@@ -22,45 +19,16 @@ import {
 	setPreviusTrack,
 	setNextTrack,
 } from '../store/PlayerSlice';
+import QueueDialog from '../components/Dialog/QueueDialog';
+import { shuffleArray, shuffleES6 } from '../Utils/Shuffle';
 export default function Player() {
 	const dispatch = useDispatch();
 	const { queue, songPlaying, isPlaying, volume } = useSelector(state => state.player);
 	const { songs } = useSelector(state => state.song);
 
-	const [media, setMedia] = useState(Viva);
-
-	useEffect(() => {
-		const importMedia = async () => {
-			// await import(songPlaying?.link);
-			const path = './songs/A-Message.m4a';
-			await import(`${path}`);
-		};
-		importMedia()
-			.then(m => {
-				console.log(m);
-				setMedia(m);
-			})
-			.catch(e => {
-				console.log(e);
-			});
-	}, [songPlaying]);
-
-	// const media = React.lazy(() => import(songPlaying?.link));
-	// console.log(media);
-	const [play, { pause, duration, sound, stop }] = useSound(
-		'./songs/A-message.m4a',
-		// require('../assets/songs/A-Message.m4a'),
-		// require(`${songPlaying?.link}`),
-		// media,
-		// songPlaying?.link,
-		// import('../assets/songs/A-Message.m4a'),
-		// media,A
-		// media,
-		// safesound,
-		{
-			volume,
-		}
-	);
+	const [play, { pause, duration, sound, stop }] = useSound(songPlaying?.link, {
+		volume,
+	});
 	const [totalTime, setTotalTime] = useState({ min: '0', sec: '0' });
 	const [currentTime, setCurrentTime] = useState({ min: '0', sec: '0' });
 	const [seconds, setSeconds] = useState(0);
@@ -114,7 +82,25 @@ export default function Player() {
 		}
 	};
 
+	const handleNext = () => {
+		dispatch(setSongPlaying(queue[10]));
+	};
+
 	// const pl
+
+	const handleChangeShuffle = () => {
+		const shuffle = async () => {
+			try {
+				const queueShufled = await shuffleES6(queue);
+				console.log(queueShufled);
+				dispatch(setQueue(queueShufled));
+			} catch (e) {
+				throw new Error(e);
+			}
+		};
+		shuffle();
+	};
+
 	return (
 		<Box
 			sx={{
@@ -135,7 +121,12 @@ export default function Player() {
 
 				<Box sx={{ display: 'flex', alignItems: 'center', flexGrow: 1 }}>
 					{/* play */}
-					<PlayerController handlePlaying={handlePlaying} isPlaying={isPlaying} />
+					<PlayerController
+						handlePlaying={handlePlaying}
+						isPlaying={isPlaying}
+						handleChangeShuffle={handleChangeShuffle}
+						handleNext={handleNext}
+					/>
 					{/* progress */}
 					<ProgressBar
 						sound={sound}
@@ -146,6 +137,7 @@ export default function Player() {
 					/>
 					{/* volume */}
 					<VolumeController />
+					<QueueDialog />
 				</Box>
 
 				{/* <PlayerActions song={song} /> */}

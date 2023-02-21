@@ -9,7 +9,12 @@ import { ReactComponent as VolumeHigh } from '../../assets/icons/volume-high.svg
 import { ReactComponent as VolumeLow } from '../../assets/icons/volume-low.svg';
 import { ReactComponent as VolumeOff } from '../../assets/icons/volume-off.svg';
 import { ReactComponent as Shuffle } from '../../assets/icons/shuffle.svg';
-export default function PlayerController({ handlePlaying, isPlaying }) {
+export default function PlayerController({
+	handlePlaying,
+	isPlaying,
+	handleChangeShuffle,
+	handleNext,
+}) {
 	return (
 		<Box sx={{ display: 'flex', alignItems: 'center' }}>
 			<IconButton component="button">
@@ -65,7 +70,7 @@ export default function PlayerController({ handlePlaying, isPlaying }) {
 					</SvgIcon>
 				</IconButton>
 			)}
-			<IconButton onClick={() => console.log('ass')}>
+			<IconButton onClick={() => handleNext()}>
 				<SvgIcon
 					sx={{
 						color: 'text.icon',
@@ -76,7 +81,10 @@ export default function PlayerController({ handlePlaying, isPlaying }) {
 					<Next />
 				</SvgIcon>
 			</IconButton>
-			<IconButton onClick={() => console.log('ass')}>
+			<IconButton
+				onClick={() => {
+					handleChangeShuffle();
+				}}>
 				<SvgIcon
 					sx={{
 						color: 'text.icon',

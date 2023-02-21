@@ -3,6 +3,7 @@ import { Form, FormikProvider, useFormik } from 'formik';
 import React from 'react';
 import * as Yup from 'yup';
 import { addSong } from '../../services/song';
+import { convertToB64 } from '../../Utils/ConvertB64';
 
 export default function SongForm() {
 	const formik = useFormik({
@@ -25,7 +26,8 @@ export default function SongForm() {
 		}),
 		onSubmit: values => {
 			const add = async () => {
-				await addSong(values);
+				const b64 = await convertToB64('');
+				await addSong({ ...values, coverImage: b64 });
 			};
 			add();
 		},
