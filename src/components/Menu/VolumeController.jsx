@@ -5,9 +5,10 @@ import { ReactComponent as VolumeLow } from '../../assets/icons/volume-low.svg';
 import { ReactComponent as VolumeOff } from '../../assets/icons/volume-off.svg';
 import { useTheme } from '@emotion/react';
 import { setVolume } from '../../store/PlayerSlice';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 export default function VolumeController() {
 	const theme = useTheme();
+	const dispatch = useDispatch();
 	const { volume } = useSelector(state => state.player);
 
 	const [anchorElUser, setAnchorElUser] = useState(null);
@@ -15,7 +16,7 @@ export default function VolumeController() {
 		setAnchorElUser(event.currentTarget);
 	};
 	const handleVolume = vol => {
-		setVolume(vol);
+		dispatch(setVolume(vol));
 	};
 	const handleCloseVolumeMenu = () => {
 		setAnchorElUser(null);
@@ -30,7 +31,9 @@ export default function VolumeController() {
 							color: 'terciary.main',
 						},
 					}}>
-					<VolumeHigh></VolumeHigh>
+					{volume > 0.5 && <VolumeHigh></VolumeHigh>}
+					{volume > 0.1 && volume < 0.5 && <VolumeLow></VolumeLow>}
+					{volume === 0 && <VolumeOff></VolumeOff>}
 				</SvgIcon>
 			</IconButton>
 			<Menu

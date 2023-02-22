@@ -95,13 +95,15 @@ export default function ArtistForm() {
 						error={Boolean(touched.website && errors.website)}
 						helperText={touched.website && errors.website}
 					/>
+					<InputLabel>Imagen de Artista</InputLabel>
 					<input
-						type="file"
-						label="Imagen"
-						onChange={(event) => {
-							handleFileChange(event)
-						}}
-					/>
+            type="file"
+            label="Imagen"
+						required
+            onChange={(event) => {
+              handleFileChange(event)
+            }}
+          />
 					<Button type="submit" variant="contained">
 						Guardar
 					</Button>

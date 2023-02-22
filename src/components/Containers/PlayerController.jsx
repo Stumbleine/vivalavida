@@ -14,6 +14,7 @@ export default function PlayerController({
 	isPlaying,
 	handleChangeShuffle,
 	handleNext,
+	handlePrevius,
 }) {
 	return (
 		<Box sx={{ display: 'flex', alignItems: 'center' }}>
@@ -28,7 +29,7 @@ export default function PlayerController({
 					<Repeat />
 				</SvgIcon>
 			</IconButton>
-			<IconButton onClick={() => console.log('ass')}>
+			<IconButton onClick={() => handlePrevius()}>
 				<SvgIcon
 					sx={{
 						color: 'text.icon',

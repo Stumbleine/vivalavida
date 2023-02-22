@@ -7,6 +7,7 @@ import SongsTable from '../components/Table/SongsTable';
 import { useDispatch, useSelector } from 'react-redux';
 import { db } from '../services/db';
 import { setSongs } from '../store/SongSlice';
+import { setQueue, setSongPlaying } from '../store/PlayerSlice';
 
 export default function MyMusic() {
 	console.log(window.location.origin + '/public/songs/A-Message.m4a');
@@ -19,6 +20,8 @@ export default function MyMusic() {
 				const songs = await db.song.toArray();
 				songs.sort((a, b) => a.title.localeCompare(b.title));
 				dispatch(setSongs(songs));
+				dispatch(setQueue(songs));
+				dispatch(setSongPlaying(0));
 			} catch (error) {
 				console.log(error);
 			}

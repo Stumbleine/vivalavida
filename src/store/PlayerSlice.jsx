@@ -4,8 +4,9 @@ const initialState = {
 	volume: 1,
 	isPlaying: false,
 	songPlaying: null,
-	nextTrack: null,
-	previusTrack: null,
+	indexNextTrack: 0,
+	indexPreviusTrack: 0,
+	indexPlayingTrack: 0,
 	// pause: false,
 	// trackPaused: {},
 	queue: [],
@@ -18,24 +19,84 @@ const playerSlice = createSlice({
 	name: 'player',
 	initialState,
 	reducers: {
+		setSongPlaying: (state, { payload }) => {
+			state.songPlaying = state.queue[payload];
+			state.indexPlayingTrack = payload;
+
+			if (payload === 0) {
+				state.indexPreviusTrack = state.queue.length - 1;
+			} else {
+				if (payload === state.queue.length - 1) {
+					state.indexPreviusTrack = 0;
+				} else {
+					state.indexPreviusTrack = state.indexPlayingTrack - 1;
+				}
+			}
+			if (payload >= 0 && payload < state.queue.length) {
+				state.indexNextTrack = state.indexPlayingTrack + 1;
+			} else {
+				if (payload === state.queue.length - 1) {
+					state.indexNextTrack = 0;
+				}
+			}
+		},
 		setPreviusTrack: (state, { payload }) => {
-			state.previusTrack = payload;
+			state.songPlaying = state.queue[state.indexPreviusTrack];
+			state.indexPlayingTrack = state.indexPreviusTrack;
+			if (state.indexPlayingTrack === 0) {
+				state.indexPreviusTrack = state.queue.length - 1;
+			} else {
+				if (state.indexPlayingTrack === state.queue.length - 1) {
+					state.indexPreviusTrack = 0;
+				} else {
+					state.indexPreviusTrack = state.indexPreviusTrack - 1;
+				}
+			}
+			if (state.indexPlayingTrack === 0) {
+				state.indexNextTrack = state.queue.length - 1;
+			} else {
+				if (state.indexPlayingTrack === state.queue.length - 1) {
+					state.indexNextTrack = 0;
+				} else {
+					state.indexNextTrack = state.indexNextTrack - 1;
+				}
+			}
 		},
 		setNextTrack: (state, { payload }) => {
-			state.nextTrack = payload;
+			state.songPlaying = state.queue[state.indexNextTrack];
+			state.indexPlayingTrack = state.indexNextTrack;
+			if (state.indexPlayingTrack === 0) {
+				state.indexPreviusTrack = state.queue.length - 1;
+			} else {
+				if (state.indexPlayingTrack === state.queue.length - 1) {
+					state.indexPreviusTrack = 0;
+				} else {
+					state.indexPreviusTrack = state.indexPreviusTrack - 1;
+				}
+			}
+			if (state.indexPlayingTrack === 0) {
+				state.indexNextTrack = state.queue.length - 1;
+			} else {
+				if (state.indexPlayingTrack === state.queue.length - 1) {
+					state.indexNextTrack = 0;
+				} else {
+					state.indexNextTrack = state.indexNextTrack - 1;
+				}
+			}
+			// console.log(st)
 		},
-		setSongPlaying: (state, { payload }) => {
-			state.songPlaying = payload;
-		},
+
 		setPlaying: (state, { payload }) => {
 			state.isPlaying = payload;
 		},
-
 		setVolume: (state, { payload }) => {
 			state.volume = payload;
 		},
 		setQueue: (state, { payload }) => {
 			state.queue = payload;
+		},
+		setIndex: (state, { payload }) => {
+			state.indexTrack = payload;
 		},
 		setCurrentTime: (state, { payload }) => {
 			state.currentTime = payload;
@@ -59,5 +120,6 @@ export const {
 	setTotalTime,
 	setNextTrack,
 	setSongPlaying,
+	setIndex,
 } = playerSlice.actions;
 export default playerSlice.reducer;
