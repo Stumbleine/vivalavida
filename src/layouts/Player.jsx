@@ -83,19 +83,29 @@ export default function Player() {
 	};
 
 	const handleNext = () => {
+		pause();
 		dispatch(setNextTrack());
+		dispatch(setPlaying(true))
+		// dispatch(setSongPlaying(0))
+		// play();
 	};
 
 	const handlePrevius = () => {
 		dispatch(setPreviusTrack());
+		pause()
+		dispatch(setPlaying(false))
+
+		// play()
 	};
 
 	const handleChangeShuffle = () => {
 		const shuffle = async () => {
 			try {
 				const queueShufled = await shuffleES6(queue);
-				console.log(queueShufled);
 				dispatch(setQueue(queueShufled));
+				dispatch(setSongPlaying(0))
+				play()
+
 			} catch (e) {
 				throw new Error(e);
 			}

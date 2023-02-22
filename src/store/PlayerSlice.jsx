@@ -22,6 +22,7 @@ const playerSlice = createSlice({
 		setSongPlaying: (state, { payload }) => {
 			state.songPlaying = state.queue[payload];
 			state.indexPlayingTrack = payload;
+			console.log(payload);
 
 			if (payload === 0) {
 				state.indexPreviusTrack = state.queue.length - 1;
