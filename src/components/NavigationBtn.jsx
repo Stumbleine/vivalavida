@@ -20,5 +20,7 @@ export default function NavigationBtn({ route, label, type }) {
     >
       {label}
     </Button>
+
+
   );
 }

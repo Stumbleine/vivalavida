@@ -1,9 +1,9 @@
 import { Button, Stack, TextField, Select, MenuItem, Input, Chip, InputLabel } from '@mui/material';
 import { Field, Form, FormikProvider, useFormik } from 'formik';
-import {React, useState} from 'react';
+import { React, useState } from 'react';
 import * as Yup from 'yup';
 import { addArtist } from '../../services/artist';
-import {convertToB64} from '../../Utils/ConvertB64';
+import { convertToB64 } from '../../Utils/ConvertB64';
 
 export default function ArtistForm() {
 
@@ -33,9 +33,9 @@ export default function ArtistForm() {
 				const formData = new FormData();
 				formData.append('image', selectedFile);
 				await fetch('http://localhost:4000/api/image', {
-        	method: 'POST',
-        	body: formData,
-      	}).then(window.location.reload(false));
+					method: 'POST',
+					body: formData,
+				}).then(window.location.reload(false));
 			};
 			add();
 		},
@@ -43,14 +43,14 @@ export default function ArtistForm() {
 	const { getFieldProps, values, errors, touched, isSubmitting } = formik;
 
 	const handleChange = (event) => {
-  	const { value } = event.target;
-  	formik.setFieldValue('genders', value);
-  };
+		const { value } = event.target;
+		formik.setFieldValue('genders', value);
+	};
 
 	const handleFileChange = (event) => {
-    console.log(event.target.files[0]);
-    setSelectedFile(event.target.files[0]);
-  };
+		console.log(event.target.files[0]);
+		setSelectedFile(event.target.files[0]);
+	};
 
 	return (
 		<FormikProvider value={formik}>
@@ -64,23 +64,23 @@ export default function ArtistForm() {
 						helperText={touched.name && errors.name}
 					/>
 					<InputLabel id="genres-label">Géneros</InputLabel>
-          <Select
-            labelId="genres-label"
-            id="genders"
-            fullWidth
-            multiple
-            value={values.genders}
-            onChange={handleChange}
-            error={Boolean(touched.genders && errors.genders)}
-            helperText={touched.genders && errors.genders}
-          >
-            <MenuItem value="rock">Rock</MenuItem>
-            <MenuItem value="pop">Pop</MenuItem>
-            <MenuItem value="jazz">Jazz</MenuItem>
-            <MenuItem value="reggae">Reggae</MenuItem>
-            <MenuItem value="metal">Metal</MenuItem>
+					<Select
+						labelId="genres-label"
+						id="genders"
+						fullWidth
+						multiple
+						value={values.genders}
+						onChange={handleChange}
+						error={Boolean(touched.genders && errors.genders)}
+						helperText={touched.genders && errors.genders}
+					>
+						<MenuItem value="rock">Rock</MenuItem>
+						<MenuItem value="pop">Pop</MenuItem>
+						<MenuItem value="jazz">Jazz</MenuItem>
+						<MenuItem value="reggae">Reggae</MenuItem>
+						<MenuItem value="metal">Metal</MenuItem>
 						<MenuItem value="edm">EDM</MenuItem>
-          </Select>
+					</Select>
 					<TextField
 						fullWidth
 						label="Miembros"
@@ -96,12 +96,12 @@ export default function ArtistForm() {
 						helperText={touched.website && errors.website}
 					/>
 					<input
-            type="file"
-            label="Imagen"
-            onChange={(event) => {
-              handleFileChange(event)
-            }}
-          />
+						type="file"
+						label="Imagen"
+						onChange={(event) => {
+							handleFileChange(event)
+						}}
+					/>
 					<Button type="submit" variant="contained">
 						Guardar
 					</Button>
