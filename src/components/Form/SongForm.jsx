@@ -75,7 +75,7 @@ export default function SongForm() {
 					method: 'POST',
 					body: formData,
 				}).then(setTimeout(() => {
-					//window.location.reload(false)
+					 window.location.reload(false)
 				}, 2000));
 			};
 			add();
@@ -214,9 +214,7 @@ export default function SongForm() {
               handleFileChange(event)
             }}
           />
-					<Button onClick={() => {
-					  console.log(values);
-					}} type="submit" variant="contained">
+					<Button type="submit" variant="contained">
 						Guardar
 					</Button>
 				</Stack>
