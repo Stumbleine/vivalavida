@@ -23,6 +23,9 @@ import SongsTable from '../components/Table/SongsTable';
 import { ReactComponent as Play } from '../assets/icons/play.svg';
 
 export default function ArtistProfile() {
+
+	const { id } = useParams();
+
 	const {
 		state: { artist },
 	} = useLocation();
@@ -40,7 +43,16 @@ export default function ArtistProfile() {
 			try {
 				const albums = await db.album.toArray();
 				const songs = await db.song.toArray();
-				dispatch(setProfile({ artist, albums, songs }));
+
+				const songsFromArtist = songs?.filter((song) => {
+					return song.artistId === parseInt(id)
+				})
+
+				const albumsFromArtist = albums?.filter((album) => {
+					return album.artistId === parseInt(id)
+				})
+
+				dispatch(setProfile({ artist, albumsFromArtist, songsFromArtist }));
 			} catch (error) {
 				console.log(error);
 			}
@@ -103,7 +115,7 @@ export default function ArtistProfile() {
 								variant="body2"
 								component="a"
 								sx={{ textDecoration: 'none', color: 'text.secondary' }}
-								href={'https://www.coldplay.com/homepage/'}>
+								href={artist.website}>
 								ir al sitio web
 							</Typography>
 						</Box>
@@ -138,8 +150,8 @@ export default function ArtistProfile() {
 						<Tab label="All songs" value="songs" />
 					</Tabs>
 					<Box sx={{ padding: 2 }}>
-						{tabValue === 'albums' && <Albums albums={artistProfile?.albums} />}
-						{tabValue === 'songs' && <SongsTable songs={artistProfile?.songs} />}
+						{tabValue === 'albums' && <Albums albums={artistProfile?.albumsFromArtist} />}
+						{tabValue === 'songs' && <SongsTable songs={artistProfile?.songsFromArtist} />}
 					</Box>
 				</Box>
 			</Paper>

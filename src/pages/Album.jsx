@@ -1,11 +1,40 @@
-import React from 'react';
+import {React, useEffect} from 'react';
 import Page from '../components/Page';
 import TitlePage from '../components/TitlePage';
-import { useLocation } from 'react-router-dom';
+import { useLocation, useParams } from 'react-router-dom';
 import { Box, Chip, Paper, Typography } from '@mui/material';
 import SongsTable from '../components/Table/SongsTable';
+import {setSongs} from '../store/SongSlice';
+import { useSelector, useDispatch } from 'react-redux';
+import { db } from '../services/db';
 
 export default function Album() {
+
+	const { id } = useParams();
+
+	const {songs} = useSelector(state => state.song);
+
+	const dispatch = useDispatch();
+
+	useEffect(() => {
+		const fetchData = async () => {
+			try {
+				const songs = await db.song.toArray();
+				dispatch(setSongs(songs))
+			} catch (error) {
+				console.log(error);
+			}
+		};
+		fetchData();
+	}, []);
+
+	const songsForAlbum = songs?.filter(song => {
+		return song.albumId === parseInt(id);
+	});
+
+	console.log(songsForAlbum);
+
+
 	const {
 		state: { album },
 	} = useLocation();
@@ -47,7 +76,7 @@ export default function Album() {
 					</Box>
 				</Box>
 				<Box sx={{ padding: 2 }}>
-					<SongsTable songs={album?.songs} />
+					<SongsTable songs={songsForAlbum} />
 				</Box>
 			</Paper>
 		</Page>
