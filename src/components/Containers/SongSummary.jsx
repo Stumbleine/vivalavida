@@ -3,16 +3,16 @@ import React from 'react';
 
 export default function SongSummary({ song }) {
 	return (
-		<Box sx={{ display: 'flex', alignItems: 'center' }}>
+		<Box sx={{ display: 'flex', alignItems: 'center', minWidth: 200 }}>
 			<Box
 				component="img"
 				alt="ss"
-				src={song?.album?.coverImage}
+				src={song?.coverImage}
 				sx={{ width: 50, height: 'auto', borderRadius: 2 }}
 			/>
 			<Box sx={{ mx: 1 }}>
-				<Typography>{song?.title}</Typography>
-				<Typography variant="subtitle2" color="textSecondary">
+				<Typography noWrap>{song?.title}</Typography>
+				<Typography noWrap variant="subtitle2" color="textSecondary">
 					{song?.album?.name}
 				</Typography>
 			</Box>

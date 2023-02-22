@@ -47,18 +47,18 @@ const playerSlice = createSlice({
 				state.indexPreviusTrack = state.queue.length - 1;
 			} else {
 				if (state.indexPlayingTrack === state.queue.length - 1) {
-					state.indexPreviusTrack = 0;
+					state.indexPreviusTrack = state.indexPlayingTrack - 1;
 				} else {
-					state.indexPreviusTrack = state.indexPreviusTrack - 1;
+					state.indexPreviusTrack = state.indexPlayingTrack - 1;
 				}
 			}
 			if (state.indexPlayingTrack === 0) {
-				state.indexNextTrack = state.queue.length - 1;
+				state.indexNextTrack = state.indexPlayingTrack + 1;
 			} else {
 				if (state.indexPlayingTrack === state.queue.length - 1) {
 					state.indexNextTrack = 0;
 				} else {
-					state.indexNextTrack = state.indexNextTrack - 1;
+					state.indexNextTrack = state.indexPlayingTrack + 1;
 				}
 			}
 		},
@@ -71,7 +71,7 @@ const playerSlice = createSlice({
 				if (state.indexPlayingTrack === state.queue.length - 1) {
 					state.indexPreviusTrack = 0;
 				} else {
-					state.indexPreviusTrack = state.indexPreviusTrack - 1;
+					state.indexPreviusTrack = state.indexPlayingTrack - 1;
 				}
 			}
 			if (state.indexPlayingTrack === 0) {
@@ -80,7 +80,7 @@ const playerSlice = createSlice({
 				if (state.indexPlayingTrack === state.queue.length - 1) {
 					state.indexNextTrack = 0;
 				} else {
-					state.indexNextTrack = state.indexNextTrack - 1;
+					state.indexNextTrack = state.indexPlayingTrack + 1;
 				}
 			}
 			// console.log(st)
