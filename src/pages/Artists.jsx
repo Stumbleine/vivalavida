@@ -19,6 +19,7 @@ export default function Artists() {
 		const fetchData = async () => {
 			try {
 				const result = await db.artist.toArray();
+				// console.log(result);
 				dispatch(setArtists(result));
 			} catch (error) {
 				console.log(error);

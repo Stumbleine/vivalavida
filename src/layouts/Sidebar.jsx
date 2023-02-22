@@ -1,23 +1,32 @@
 import { Box, Button, Drawer, Toolbar } from '@mui/material';
-import React from 'react';
+import React, { useEffect } from 'react';
 import NavigationBtn from '../components/NavigationBtn';
 import { db } from '../services/db';
 import { useLiveQuery } from 'dexie-react-hooks';
 import AddItem from '../components/Dialog/AddItem';
+import { useSelector } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 
 export default function Sidebar() {
-	const artistList = useLiveQuery(() => db.artists?.toArray());
+	const navigate = useNavigate();
+	const artistList = useLiveQuery(() => db.artist.toArray()
+	);
 
 	const artists = artistList?.map(artist => {
 		return (
-			<NavigationBtn
-				key={artist.artistId}
-				label={artist.name}
-				route={`/albums/${artist.artistId}`}
-			/>
+			<Button
+				sx={{ color: 'white' }}
+				onClick={() =>
+					navigate(`/artist-profile/${artist.artistId}`, { state: { artist: artist } })
+				}
+			>
+				{artist.name}
+			</Button>
+
+
+
 		);
 	});
-
 	return (
 		<Drawer
 			variant="permanent"
@@ -36,11 +45,12 @@ export default function Sidebar() {
 			<Toolbar />
 			<Box sx={{ display: 'flex', flexDirection: 'column' }}>
 				<AddItem />
-				<NavigationBtn label="All Artists" route="/artists" />
+				<NavigationBtn label="All Artist" route="/artists" />
 			</Box>
-			{/* <Box sx={{ mr: 1, display: "flex", flexDirection: "column"}}> */}
-			{artistList && artistList.length > 0 ? (
-				<Box sx={{ mr: 1, display: 'flex', flexDirection: 'column' }}>{artists}</Box>
+			{artists && artists.length > 0 ? (
+				<Box sx={{ mr: 1, display: 'flex', flexDirection: 'column' }}>
+					{artists}
+				</Box>
 			) : (
 				<NavigationBtn label="No artists were found" />
 			)}

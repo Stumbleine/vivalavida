@@ -17,7 +17,7 @@ import Album from './pages/Album';
 
 export default function Router() {
 	const location = useLocation();
-	console.log(location.pathname);
+	// console.log(location.pathname);
 	return useRoutes([
 		{
 			path: '/',
