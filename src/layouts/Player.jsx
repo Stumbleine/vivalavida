@@ -18,12 +18,15 @@ import {
 	setQueue,
 	setPreviusTrack,
 	setNextTrack,
+	setIndex,
 } from '../store/PlayerSlice';
 import QueueDialog from '../components/Dialog/QueueDialog';
 import { shuffleArray, shuffleES6 } from '../Utils/Shuffle';
 export default function Player() {
 	const dispatch = useDispatch();
-	const { queue, songPlaying, isPlaying, volume } = useSelector(state => state.player);
+	const { queue, songPlaying, isPlaying, volume, indexTrack } = useSelector(
+		state => state.player
+	);
 	const { songs } = useSelector(state => state.song);
 
 	const [play, { pause, duration, sound, stop }] = useSound(songPlaying?.link, {
@@ -59,7 +62,7 @@ export default function Player() {
 	}, [sound]);
 
 	const handlePlaying = () => {
-		if (queue.length > 0 && songPlaying) {
+		if (songPlaying) {
 			if (isPlaying) {
 				pause();
 				dispatch(setPlaying(false));
@@ -68,10 +71,7 @@ export default function Player() {
 				dispatch(setPlaying(true));
 			}
 		} else {
-			dispatch(setQueue(songs));
-			dispatch(setSongPlaying(queue[0]));
-			dispatch(setPreviusTrack(queue.length[queue.length - 1]));
-			dispatch(setNextTrack(queue));
+			dispatch(setSongPlaying(0));
 			if (isPlaying) {
 				pause();
 				dispatch(setPlaying(false));
@@ -83,10 +83,12 @@ export default function Player() {
 	};
 
 	const handleNext = () => {
-		dispatch(setSongPlaying(queue[10]));
+		dispatch(setNextTrack());
 	};
 
-	// const pl
+	const handlePrevius = () => {
+		dispatch(setPreviusTrack());
+	};
 
 	const handleChangeShuffle = () => {
 		const shuffle = async () => {
@@ -126,6 +128,7 @@ export default function Player() {
 						isPlaying={isPlaying}
 						handleChangeShuffle={handleChangeShuffle}
 						handleNext={handleNext}
+						handlePrevius={handlePrevius}
 					/>
 					{/* progress */}
 					<ProgressBar
