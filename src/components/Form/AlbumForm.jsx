@@ -131,6 +131,7 @@ export default function AlbumForm() {
 					<input
 						type="file"
 						label="Imagen del cover"
+						required
 						onChange={(event) => {
 						handleFileChange(event)
 						}}
