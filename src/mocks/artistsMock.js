@@ -42,7 +42,7 @@ export default [
 		image:
 			'https://ichef.bbci.co.uk/news/976/cpsprodpb/1812D/production/_127650689_gettyimages-1300911529.jpg',
 	},
-
+	,
 	{
 		artistId: 6,
 		name: 'SZA',
@@ -52,7 +52,7 @@ export default [
 		image:
 			'https://media.gq.com/photos/5a94286b5329a30b1ccdfe20/16:9/w_2560%2Cc_limit/GQ030118SZA_03.jpg',
 	},
-
+	,
 	{
 		artistId: 7,
 		name: 'Harry Styles',
@@ -61,7 +61,7 @@ export default [
 		website: 'https://www.hstyles.co.uk/',
 		image: 'https://historia-biografia.com/wp-content/uploads/2017/07/Harry-Styles-1.jpg',
 	},
-
+	,
 	{
 		artistId: 8,
 		name: 'Drake',
