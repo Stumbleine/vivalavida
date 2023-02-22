@@ -5,6 +5,7 @@ import SongSlice from './SongSlice';
 import PlayerSlice from './PlayerSlice';
 import SettingSlice from './SettingSlice';
 import ArtistSlice from './ArtistSlice';
+import AlbumSlice from './AlbumSlice';
 
 const localStorageMiddleware = ({ getState }) => {
 	return next => action => {
@@ -34,8 +35,8 @@ export default configureStore({
 		player: PlayerSlice,
 		setting: SettingSlice,
 		artist: ArtistSlice,
+		album: AlbumSlice,
 		// users: UsersSlice,
-		// album: albumSlice
 	},
 	middleware: curryGetDefaultMiddleware =>
 		curryGetDefaultMiddleware().concat(localStorageMiddleware),
