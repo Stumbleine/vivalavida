@@ -87,15 +87,14 @@ export default function Player() {
 		dispatch(setNextTrack());
 		dispatch(setPlaying(true))
 		// dispatch(setSongPlaying(0))
-		// play();
+		play();
 	};
 
 	const handlePrevius = () => {
-		dispatch(setPreviusTrack());
 		pause()
-		dispatch(setPlaying(false))
+		dispatch(setPreviusTrack());
 
-		// play()
+		play()
 	};
 
 	const handleChangeShuffle = () => {

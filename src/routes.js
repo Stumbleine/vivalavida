@@ -31,22 +31,7 @@ export default function Router() {
 					path: 'my-music',
 					element: <MyMusic />,
 				},
-				{
-					path: 'playlists',
-					element: <Playlists />,
-				},
-				{
-					path: 'playlists/:name',
-					element: <PlaylistContent />,
-				},
-				{
-					path: 'favorites-tunes',
-					element: <MyFavoritesTunes />,
-				},
-				{
-					path: 'register-tune',
-					element: <RegisterSong />,
-				},
+
 				{
 					path: '/artists',
 					element: <Artists />,

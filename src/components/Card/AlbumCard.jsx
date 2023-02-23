@@ -28,7 +28,6 @@ export default function AlbumCard({ album }) {
 					<Button
 						variant="contained"
 						size="small"
-						sx={{ color: 'white' }}
 						onClick={() => navigate(`/album/${album.albumId}`, { state: { album } })}>
 						View album
 					</Button>
