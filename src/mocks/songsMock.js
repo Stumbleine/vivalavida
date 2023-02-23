@@ -48,6 +48,8 @@ export default [
 		launchYear: '2022',
 		link: '/songs/Safe-And-Sound.m4a',
 		duration: '3:24',
+		coverImage:
+			'https://upload.wikimedia.org/wikipedia/en/9/9f/Midnights_-_Taylor_Swift.png',
 	},
 	{
 		songId: 6,
@@ -58,6 +60,8 @@ export default [
 		launchYear: '2019',
 		link: '/songs/Safe-And-Sound.m4a',
 		duration: '2:58',
+		coverImage:
+			'https://i0.wp.com/www.alexurbanpop.com/wp-content/uploads/2019/08/Taylor-Swift-Lover-Cover-Artwork-made-by-Alex-Robles.png?fit=1000%2C1000&ssl=1',
 	},
 	{
 		songId: 7,
@@ -68,6 +72,8 @@ export default [
 		launchYear: '2019',
 		link: '/songs/Safe-And-Sound.m4a',
 		duration: '3:38',
+		coverImage:
+			'https://i0.wp.com/www.alexurbanpop.com/wp-content/uploads/2019/08/Taylor-Swift-Lover-Cover-Artwork-made-by-Alex-Robles.png?fit=1000%2C1000&ssl=1',
 	},
 	{
 		songId: 8,
@@ -78,6 +84,8 @@ export default [
 		launchYear: '2019',
 		link: '/songs/Safe-And-Sound.m4a',
 		duration: '3:20',
+		coverImage:
+			'https://i0.wp.com/www.alexurbanpop.com/wp-content/uploads/2019/08/Taylor-Swift-Lover-Cover-Artwork-made-by-Alex-Robles.png?fit=1000%2C1000&ssl=1',
 	},
 	{
 		songId: 9,
@@ -88,6 +96,8 @@ export default [
 		launchYear: '2019',
 		link: '/songs/Safe-And-Sound.m4a',
 		duration: '2:54',
+		coverImage:
+			'https://i0.wp.com/www.alexurbanpop.com/wp-content/uploads/2019/08/Taylor-Swift-Lover-Cover-Artwork-made-by-Alex-Robles.png?fit=1000%2C1000&ssl=1',
 	},
 	{
 		songId: 10,
@@ -98,6 +108,8 @@ export default [
 		launchYear: '2005',
 		link: '/songs/Viva-La-Vida.m4a',
 		duration: '2:54',
+		coverImage:
+			'https://upload.wikimedia.org/wikipedia/en/thumb/2/28/Coldplay_X%26Y.svg/1200px-Coldplay_X%26Y.svg.png',
 	},
 	{
 		songId: 10,
@@ -108,6 +120,8 @@ export default [
 		launchYear: '2005',
 		link: '/songs/Fix-you.m4a',
 		duration: '2:54',
+		coverImage:
+			'https://upload.wikimedia.org/wikipedia/en/thumb/2/28/Coldplay_X%26Y.svg/1200px-Coldplay_X%26Y.svg.png',
 	},
 	{
 		songId: 11,
@@ -118,6 +132,8 @@ export default [
 		launchYear: '2005',
 		link: '/songs/Talk.m4a',
 		duration: '3:54',
+		coverImage:
+			'https://upload.wikimedia.org/wikipedia/en/thumb/2/28/Coldplay_X%26Y.svg/1200px-Coldplay_X%26Y.svg.png',
 	},
 	{
 		songId: 12,
@@ -128,6 +144,8 @@ export default [
 		launchYear: '2005',
 		link: '/songs/Speed-of-Sound.m4a',
 		duration: '3:02',
+		coverImage:
+			'https://upload.wikimedia.org/wikipedia/en/thumb/2/28/Coldplay_X%26Y.svg/1200px-Coldplay_X%26Y.svg.png',
 	},
 	{
 		songId: 13,
@@ -138,6 +156,8 @@ export default [
 		launchYear: '2005',
 		link: '/songs/The-Hardest-Part.m4a',
 		duration: '3:10',
+		coverImage:
+			'https://upload.wikimedia.org/wikipedia/en/thumb/2/28/Coldplay_X%26Y.svg/1200px-Coldplay_X%26Y.svg.png',
 	},
 	{
 		songId: 14,
@@ -148,6 +168,8 @@ export default [
 		launchYear: '2005',
 		link: '/songs/A-Message.m4a',
 		duration: '4:45',
+		coverImage:
+			'https://upload.wikimedia.org/wikipedia/en/thumb/2/28/Coldplay_X%26Y.svg/1200px-Coldplay_X%26Y.svg.png',
 	},
 	{
 		songId: 15,
@@ -158,6 +180,8 @@ export default [
 		launchYear: '2014',
 		link: '/songs/Always-in-My-Head.m4a',
 		duration: '3:36',
+		coverImage:
+			'https://i.pinimg.com/originals/ff/67/31/ff6731aeb9dc809e4e94b3cd472df67a.jpg',
 	},
 	{
 		songId: 16,
@@ -168,6 +192,8 @@ export default [
 		launchYear: '2014',
 		link: '/songs/Magic.m4a',
 		duration: '4:45',
+		coverImage:
+			'https://i.pinimg.com/originals/ff/67/31/ff6731aeb9dc809e4e94b3cd472df67a.jpg',
 	},
 	{
 		songId: 17,
@@ -178,6 +204,8 @@ export default [
 		launchYear: '2014',
 		link: '/songs/Ink.m4a',
 		duration: '3:48',
+		coverImage:
+			'https://i.pinimg.com/originals/ff/67/31/ff6731aeb9dc809e4e94b3cd472df67a.jpg',
 	},
 	{
 		songId: 18,
@@ -188,6 +216,8 @@ export default [
 		launchYear: '2014',
 		link: '/songs/Midnight.m4a',
 		duration: '4:54',
+		coverImage:
+			'https://i.pinimg.com/originals/ff/67/31/ff6731aeb9dc809e4e94b3cd472df67a.jpg',
 	},
 	{
 		songId: 19,
@@ -198,6 +228,8 @@ export default [
 		launchYear: '2014',
 		link: '/songs/A-Sky-Full-of-Stars.m4a',
 		duration: '4:27',
+		coverImage:
+			'https://i.pinimg.com/originals/ff/67/31/ff6731aeb9dc809e4e94b3cd472df67a.jpg',
 	},
 	{
 		songId: 20,
@@ -208,6 +240,7 @@ export default [
 		launchYear: '2022',
 		link: '',
 		duration: '2:51',
+		coverImage: 'https://i.scdn.co/image/ab67616d0000b273e741cd9dc139d57cc2906186',
 	},
 	// {
 	// 	songId: 21,

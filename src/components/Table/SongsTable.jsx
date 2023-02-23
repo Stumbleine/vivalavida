@@ -14,6 +14,7 @@ import React, { useState } from 'react';
 import { ReactComponent as Play } from '../../assets/icons/play.svg';
 import { ReactComponent as Pause } from '../../assets/icons/pause.svg';
 export default function SongsTable({ songs }) {
+
 	const TABLE_HEAD = [
 		{ label: '#', id: 'index' },
 		{ label: 'Title', id: 'title' },
@@ -82,7 +83,7 @@ export default function SongsTable({ songs }) {
 										}}>
 										<Box
 											component="img"
-											src="https://m.media-amazon.com/images/I/412sbtxLy5L._AC_.jpg"
+											src={song.coverImage}
 											sx={{
 												width: 50,
 												height: 50,
