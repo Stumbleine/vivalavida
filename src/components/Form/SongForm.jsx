@@ -61,7 +61,7 @@ export default function SongForm() {
 			// duration: Yup.string().required('La duracion es requerida'),
 		}),
 		onSubmit: values => {
-
+			
 			const artistObject = artists?.find((artist) => artist.artistId === values.artistId)
 			const albumObject = albums?.find((album) => album.albumId === values.albumId)
 			values = {...values, artistName: artistObject.name, albumTitle: albumObject.title, coverImage: albumObject.coverImage};
@@ -104,7 +104,7 @@ export default function SongForm() {
 	};
 
 	const handleFileChange = (event) => {
-    console.log(event.target.files[0]);
+    
     setSelectedFile(event.target.files[0]);
   };
 

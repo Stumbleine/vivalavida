@@ -151,7 +151,7 @@ export default function ArtistProfile() {
 					</Tabs>
 					<Box sx={{ padding: 2 }}>
 						{tabValue === 'albums' && <Albums albums={artistProfile?.albumsFromArtist} />}
-						{tabValue === 'songs' && <SongsTable songs={artistProfile?.songsFromArtist} />}
+						{tabValue === 'songs' && <SongsTable songs={artistProfile?.songsFromArtist}/>}
 					</Box>
 				</Box>
 			</Paper>
