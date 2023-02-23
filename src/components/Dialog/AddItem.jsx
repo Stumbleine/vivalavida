@@ -34,7 +34,7 @@ export default function AddItem() {
 	return (
 		<>
 			<Button color="secondary" variant="contained" onClick={handleClickOpen}>
-				<Add></Add>
+				Add
 			</Button>
 			<Dialog
 				PaperProps={{
@@ -44,7 +44,7 @@ export default function AddItem() {
 				open={open}
 				onClose={handleClose}
 				TransitionComponent={Transition}>
-				<DialogTitle>Añadir</DialogTitle>
+				<DialogTitle>Add</DialogTitle>
 				<DialogContent sx={{ background: 'none' }}>
 					<Tabs
 						value={tabValue}

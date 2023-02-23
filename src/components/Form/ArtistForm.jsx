@@ -1,12 +1,24 @@
-import { Button, Stack, TextField, Select, MenuItem, Input, Chip, InputLabel } from '@mui/material';
+import {
+	Button,
+	Stack,
+	TextField,
+	Select,
+	MenuItem,
+	Input,
+	Chip,
+	InputLabel,
+	Box,
+	Paper,
+	Typography,
+} from '@mui/material';
 import { Field, Form, FormikProvider, useFormik } from 'formik';
 import { React, useState } from 'react';
 import * as Yup from 'yup';
 import { addArtist } from '../../services/artist';
 import { convertToB64 } from '../../Utils/ConvertB64';
+import FileUploader from './FileUploader';
 
 export default function ArtistForm() {
-
 	const [selectedFile, setSelectedFile] = useState(null);
 
 	const formik = useFormik({
@@ -41,15 +53,16 @@ export default function ArtistForm() {
 		},
 	});
 	const { getFieldProps, values, errors, touched, isSubmitting } = formik;
-
-	const handleChange = (event) => {
+	const [preload, setPreload] = useState(null);
+	const handleChange = event => {
 		const { value } = event.target;
 		formik.setFieldValue('genders', value);
 	};
 
-	const handleFileChange = (event) => {
+	const handleFileChange = event => {
 		console.log(event.target.files[0]);
 		setSelectedFile(event.target.files[0]);
+		setPreload(URL.createObjectURL(event.target?.files[0]));
 	};
 
 	return (
@@ -58,6 +71,7 @@ export default function ArtistForm() {
 				<Stack direction="column" spacing={2}>
 					<TextField
 						fullWidth
+						size="small"
 						label="Name"
 						{...getFieldProps('name')}
 						error={Boolean(touched.name && errors.name)}
@@ -68,12 +82,12 @@ export default function ArtistForm() {
 						labelId="genres-label"
 						id="genders"
 						fullWidth
+						size="small"
 						multiple
 						value={values.genders}
 						onChange={handleChange}
 						error={Boolean(touched.genders && errors.genders)}
-						helperText={touched.genders && errors.genders}
-					>
+						helperText={touched.genders && errors.genders}>
 						<MenuItem value="rock">Rock</MenuItem>
 						<MenuItem value="pop">Pop</MenuItem>
 						<MenuItem value="jazz">Jazz</MenuItem>
@@ -82,6 +96,7 @@ export default function ArtistForm() {
 						<MenuItem value="edm">EDM</MenuItem>
 					</Select>
 					<TextField
+						size="small"
 						fullWidth
 						label="Miembros"
 						{...getFieldProps('members')}
@@ -90,20 +105,18 @@ export default function ArtistForm() {
 					/>
 					<TextField
 						fullWidth
+						size="small"
 						label="Página Web"
 						{...getFieldProps('website')}
 						error={Boolean(touched.website && errors.website)}
 						helperText={touched.website && errors.website}
 					/>
 					<InputLabel>Imagen de Artista</InputLabel>
-					<input
-            type="file"
-            label="Imagen"
-						required
-            onChange={(event) => {
-              handleFileChange(event)
-            }}
-          />
+					<FileUploader
+						handleFileChange={handleFileChange}
+						preload={preload}
+						selectedFile={selectedFile}
+					/>
 					<Button type="submit" variant="contained">
 						Guardar
 					</Button>

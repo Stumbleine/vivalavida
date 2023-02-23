@@ -1,15 +1,15 @@
 import { Button, Stack, TextField, Select, MenuItem, InputLabel } from '@mui/material';
 import { Form, FormikProvider, useFormik } from 'formik';
-import {React, useState, useEffect} from 'react';
+import { React, useState, useEffect } from 'react';
 import * as Yup from 'yup';
 import { addAlbum } from '../../services/album';
-import {convertToB64} from '../../Utils/ConvertB64';
+import { convertToB64 } from '../../Utils/ConvertB64';
 import { useDispatch, useSelector } from 'react-redux';
 import { db } from '../../services/db';
 import { setArtists } from '../../store/ArtistSlice';
+import FileUploader from './FileUploader';
 
 export default function AlbumForm() {
-
 	const { artists } = useSelector(state => state.artist);
 	const dispatch = useDispatch();
 	useEffect(() => {
@@ -39,7 +39,7 @@ export default function AlbumForm() {
 			artistId: Yup.number().required('El artista es requerido'),
 			title: Yup.string().required('El titulo es requerido'),
 			gender: Yup.string().required('El genero es requerido'),
-			yearLaunch: Yup.string().required('El año de lanzamiento es requerida')
+			yearLaunch: Yup.string().required('El año de lanzamiento es requerida'),
 		}),
 		onSubmit: values => {
 			const add = async () => {
@@ -58,44 +58,48 @@ export default function AlbumForm() {
 	});
 	const { getFieldProps, values, errors, touched, isSubmitting } = formik;
 
-	const handleFileChange = (event) => {
-		console.log(event.target.files[0]);
-		setSelectedFile(event.target.files[0]);
-	};
+	const [preload, setPreload] = useState(null);
 
-	const handleChangeArtist = (event) => {
+	const handleChangeArtist = event => {
 		const { value } = event.target;
 		formik.setFieldValue('artistId', value);
 	};
 
-	const handleChangeGender = (event) => {
+	const handleChangeGender = event => {
 		const { value } = event.target;
 		formik.setFieldValue('gender', value);
+	};
+	const handleFileChange = event => {
+		console.log(event.target.files[0]);
+		setSelectedFile(event.target.files[0]);
+		setPreload(URL.createObjectURL(event.target?.files[0]));
 	};
 
 	return (
 		<FormikProvider value={formik}>
 			<Form autoComplete>
 				<Stack direction="column" spacing={2}>
-
 					<InputLabel id="artist-label">Artista</InputLabel>
 
 					<Select
 						labelId="artist-label"
 						id="artistId"
+						size="small"
 						fullWidth
 						value={values.artistId}
 						onChange={handleChangeArtist}
 						error={Boolean(touched.artistId && errors.artistId)}
-						helperText={touched.artistId && errors.artistId}
-					>
+						helperText={touched.artistId && errors.artistId}>
 						{artists?.map(artist => (
-							<MenuItem key={artist.artistId} value={artist.artistId}>{artist.name}</MenuItem>
+							<MenuItem key={artist.artistId} value={artist.artistId}>
+								{artist.name}
+							</MenuItem>
 						))}
 					</Select>
 
 					<TextField
 						fullWidth
+						size="small"
 						label="Titulo"
 						{...getFieldProps('title')}
 						error={Boolean(touched.title && errors.title)}
@@ -107,11 +111,11 @@ export default function AlbumForm() {
 						labelId="gender-label"
 						id="gender"
 						fullWidth
+						size="small"
 						value={values.gender}
 						onChange={handleChangeGender}
 						error={Boolean(touched.gender && errors.gender)}
-						helperText={touched.gender && errors.gender}
-					>
+						helperText={touched.gender && errors.gender}>
 						<MenuItem value="rock">Rock</MenuItem>
 						<MenuItem value="pop">Pop</MenuItem>
 						<MenuItem value="jazz">Jazz</MenuItem>
@@ -120,6 +124,7 @@ export default function AlbumForm() {
 						<MenuItem value="edm">EDM</MenuItem>
 					</Select>
 					<TextField
+						size="small"
 						fullWidth
 						label="Año de lanzamiento"
 						{...getFieldProps('yearLaunch')}
@@ -128,13 +133,10 @@ export default function AlbumForm() {
 					/>
 
 					<InputLabel>Imagen de Portada</InputLabel>
-					<input
-						type="file"
-						label="Imagen del cover"
-						required
-						onChange={(event) => {
-						handleFileChange(event)
-						}}
+					<FileUploader
+						handleFileChange={handleFileChange}
+						preload={preload}
+						selectedFile={selectedFile}
 					/>
 					<Button type="submit" variant="contained">
 						Guardar

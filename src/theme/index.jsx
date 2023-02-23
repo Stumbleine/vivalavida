@@ -1,6 +1,6 @@
 import { createTheme } from '@mui/material/styles';
-import { green, grey, orange, red } from '@mui/material/colors';
-// import ComponentsOverrides from "./ComponentsOverrides";
+import { green, grey, orange, purple, red } from '@mui/material/colors';
+import ComponentsOverrides from './overrides';
 
 const PRIMARY = '#181818';
 const SECONDARY = '#7B818A';
@@ -26,6 +26,7 @@ export const darkTheme = createTheme({
 		text: {
 			primary: TEXT_PRIMARY,
 			secondary: SECONDARY,
+			active: purple[300],
 			icon: SECONDARY,
 		},
 		warning: {
@@ -49,19 +50,26 @@ export const darkTheme = createTheme({
 
 export const lightTheme = createTheme({
 	palette: {
-		mode: 'dark',
+		mode: 'light',
 		primary: {
-			main: '#EEF2F7',
+			main: TERCIARY,
 		},
 		secondary: {
-			main: '#181818',
+			main: SECONDARY,
 		},
 		terciary: {
-			main: '#7B818A',
+			main: PRIMARY,
 		},
 		background: {
-			paper: '#fff',
-			default: '#181818',
+			paper: TERCIARY,
+			default: SECONDARY,
+		},
+		text: {
+			primary: PRIMARY,
+			secondary: SECONDARY,
+			active: purple[300],
+
+			icon: SECONDARY,
 		},
 		warning: {
 			main: orange[800],
@@ -82,4 +90,5 @@ export const lightTheme = createTheme({
 	},
 });
 
-// lightTheme.components = ComponentsOverrides(lightTheme);
+lightTheme.components = ComponentsOverrides(lightTheme);
+darkTheme.components = ComponentsOverrides(darkTheme);
