@@ -17,3 +17,10 @@ export const shuffleES6 = array => {
 
 	return array;
 };
+
+export const shufleArray = array => {
+	console.log(array);
+	const sort = array.sort(() => Math.random() )
+	console.log(sort);
+	return sort
+}
