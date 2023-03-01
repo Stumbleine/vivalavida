@@ -18,17 +18,7 @@ export default function PlayerController({
 }) {
 	return (
 		<Box sx={{ display: 'flex', alignItems: 'center' }}>
-			<IconButton component="button">
-				<SvgIcon
-					sx={{
-						color: 'text.icon',
-						'&:hover': {
-							color: 'terciary.main',
-						},
-					}}>
-					<Repeat />
-				</SvgIcon>
-			</IconButton>
+			
 			<IconButton onClick={() => handlePrevius()}>
 				<SvgIcon
 					sx={{
@@ -82,20 +72,7 @@ export default function PlayerController({
 					<Next />
 				</SvgIcon>
 			</IconButton>
-			<IconButton
-				onClick={() => {
-					handleChangeShuffle();
-				}}>
-				<SvgIcon
-					sx={{
-						color: 'text.icon',
-						'&:hover': {
-							color: 'terciary.main',
-						},
-					}}>
-					<Shuffle />
-				</SvgIcon>
-			</IconButton>
+	
 		</Box>
 	);
 }

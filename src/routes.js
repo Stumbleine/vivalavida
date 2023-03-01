@@ -45,6 +45,10 @@ export default function Router() {
 					element: <Album />,
 				},
 				{
+					path: '/albums',
+					element: <Albums />,
+				},
+				{
 					path: '/songs',
 					element: <Songs />,
 				},

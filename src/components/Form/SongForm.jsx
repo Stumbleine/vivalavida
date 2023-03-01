@@ -126,7 +126,7 @@ export default function SongForm() {
 
 	return (
 		<FormikProvider value={formik}>
-			<Form autoComplete>
+			<Form >
 				<Stack direction="column" spacing={2}>
 					<InputLabel id="artist-label">Artist</InputLabel>
 					<Select

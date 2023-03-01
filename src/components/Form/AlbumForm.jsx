@@ -44,7 +44,6 @@ export default function AlbumForm() {
 		onSubmit: values => {
 			const add = async () => {
 				const b64 = await convertToB64(selectedFile);
-				console.log({ ...values, coverImage: b64 });
 				await addAlbum({ ...values, coverImage: b64 });
 				const formData = new FormData();
 				formData.append('coverImage', selectedFile);
@@ -56,7 +55,7 @@ export default function AlbumForm() {
 			add();
 		},
 	});
-	const { getFieldProps, values, errors, touched, isSubmitting } = formik;
+	const { getFieldProps, values, errors, touched, isSubmitting,handleSubmit } = formik;
 
 	const [preload, setPreload] = useState(null);
 
@@ -77,7 +76,7 @@ export default function AlbumForm() {
 
 	return (
 		<FormikProvider value={formik}>
-			<Form autoComplete>
+			<Form onSubmit={handleSubmit}>
 				<Stack direction="column" spacing={2}>
 					<InputLabel id="artist-label">Artista</InputLabel>
 

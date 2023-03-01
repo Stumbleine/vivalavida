@@ -18,7 +18,7 @@ export const shuffleES6 = array => {
 	return array;
 };
 
-export const shufleArray = array => {
-	console.log(array);
-	//return array.sort(() => Math.random() - 0.5);
+export const shufleArray = async (array) => {
+	console.log("insert array",array);
+	return await array.sort(() => Math.random() - 0.5);
 };
