@@ -45,7 +45,7 @@ export default function ProgressBar({
 					'& .MuiSlider-thumb': {
 						width: 10,
 						height: 10,
-						transition: '0.3s cubic-bezier(.47,1.64,.41,.8)',
+						transition: '0.2s cubic-bezier(.47,1.64,.41,.8)',
 						'&:before': {
 							// boxShadow: '0 2px 12px 0 rgba(255,255,255,0.4)',
 							boxShadow: `0 2px 12px 0 ${

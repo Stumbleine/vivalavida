@@ -30,7 +30,12 @@ export default function Player() {
 	const { songs } = useSelector(state => state.song);
 
 	const [play, { pause, duration, sound, stop }] = useSound(songPlaying?.link, {
+		// id: songPlaying.songId,
 		volume,
+		interrupt: false,
+		onend: () => {
+			handleNext();
+		},
 	});
 	const [totalTime, setTotalTime] = useState({ min: '0', sec: '0' });
 	const [currentTime, setCurrentTime] = useState({ min: '0', sec: '0' });
@@ -61,64 +66,44 @@ export default function Player() {
 		return () => clearInterval(interval);
 	}, [sound]);
 
+	// useEffect(() => {
+	// 	if (isPlaying) {
+	// 		play();
+	// 		console.log('play');
+	// 	} else {
+	// 		pause();
+	// 		console.log('pause');
+	// 	}
+	// }, [isPlaying]);
+
 	const handlePlaying = () => {
-		if (songPlaying) {
-			if (isPlaying) {
-				pause();
-				dispatch(setPlaying(false));
-			} else {
-				play();
-				dispatch(setPlaying(true));
-			}
+		if (isPlaying && songPlaying) {
+			pause();
+			dispatch(setPlaying(false));
 		} else {
-			dispatch(setSongPlaying(0));
-			if (isPlaying) {
-				pause();
-				dispatch(setPlaying(false));
-			} else {
-				play();
-				dispatch(setPlaying(true));
-			}
+			play();
+			dispatch(setPlaying(true));
 		}
 	};
 
 	const handleNext = () => {
 		pause();
+		dispatch(setPlaying(false));
 		dispatch(setNextTrack());
-		dispatch(setPlaying(true))
-		// dispatch(setSongPlaying(0))
-		// play();
 	};
 
 	const handlePrevius = () => {
-		pause()
+		pause();
+		dispatch(setPlaying(false));
 		dispatch(setPreviusTrack());
-		const shufle = shufleArray(queue)
-		console.log(shufle);
-		dispatch(setQueue(queue))
-		// play()
 	};
 
-
 	const handleChangeShuffle = async () => {
-		pause()
+		pause();
+		console.log(queue);
 		const queueShufled = await shufleArray(queue);
 		console.log(queueShufled);
-		dispatch(setQueue(queueShufled))
-		const shuffle = () => {
-			try {
-				const queueShufled = shufleArray(queue);
-				pause()
-				dispatch(setQueue(queueShufled));
-				dispatch(setSongPlaying(0))
-				play()
-
-			} catch (e) {
-				console.log('pop');
-				throw new Error(e);
-			}
-		};
-		shuffle();
+		dispatch(setQueue(queueShufled));
 	};
 
 	return (

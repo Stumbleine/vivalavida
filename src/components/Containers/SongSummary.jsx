@@ -3,7 +3,7 @@ import React from 'react';
 
 export default function SongSummary({ song }) {
 	return (
-		<Box sx={{ display: 'flex', alignItems: 'center', minWidth: 200 }}>
+		<Box sx={{ display: 'flex', alignItems: 'center', minWidth: 300 }}>
 			<Box
 				component="img"
 				alt="ss"
@@ -13,7 +13,7 @@ export default function SongSummary({ song }) {
 			<Box sx={{ mx: 1 }}>
 				<Typography noWrap>{song?.title}</Typography>
 				<Typography noWrap variant="subtitle2" color="textSecondary">
-					{song?.album?.name}
+					{song?.albumName}
 				</Typography>
 			</Box>
 		</Box>

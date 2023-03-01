@@ -50,6 +50,8 @@ export default [
 		duration: '3:24',
 		coverImage:
 			'https://upload.wikimedia.org/wikipedia/en/9/9f/Midnights_-_Taylor_Swift.png',
+		albumName: 'Midnights',
+		artistName: 'Taylor Swift',
 	},
 	{
 		songId: 6,
@@ -62,6 +64,8 @@ export default [
 		duration: '2:58',
 		coverImage:
 			'https://i0.wp.com/www.alexurbanpop.com/wp-content/uploads/2019/08/Taylor-Swift-Lover-Cover-Artwork-made-by-Alex-Robles.png?fit=1000%2C1000&ssl=1',
+		albumName: 'Lover',
+		artistName: 'Taylor Swift',
 	},
 	{
 		songId: 7,
@@ -74,6 +78,8 @@ export default [
 		duration: '3:38',
 		coverImage:
 			'https://i0.wp.com/www.alexurbanpop.com/wp-content/uploads/2019/08/Taylor-Swift-Lover-Cover-Artwork-made-by-Alex-Robles.png?fit=1000%2C1000&ssl=1',
+		albumName: 'Lover',
+		artistName: 'Taylor Swift',
 	},
 	{
 		songId: 8,
@@ -86,6 +92,8 @@ export default [
 		duration: '3:20',
 		coverImage:
 			'https://i0.wp.com/www.alexurbanpop.com/wp-content/uploads/2019/08/Taylor-Swift-Lover-Cover-Artwork-made-by-Alex-Robles.png?fit=1000%2C1000&ssl=1',
+		albumName: 'Lover',
+		artistName: 'Taylor Swift',
 	},
 	{
 		songId: 9,
@@ -98,19 +106,22 @@ export default [
 		duration: '2:54',
 		coverImage:
 			'https://i0.wp.com/www.alexurbanpop.com/wp-content/uploads/2019/08/Taylor-Swift-Lover-Cover-Artwork-made-by-Alex-Robles.png?fit=1000%2C1000&ssl=1',
+		albumName: 'Lover',
+		artistName: 'Taylor Swift',
 	},
-	{
-		songId: 10,
-		artistId: 2,
-		albumId: 3,
-		title: 'Viva La Vida',
-		gender: 'Post-Britpop',
-		launchYear: '2005',
-		link: '/songs/Viva-La-Vida.m4a',
-		duration: '2:54',
-		coverImage:
-			'https://upload.wikimedia.org/wikipedia/en/thumb/2/28/Coldplay_X%26Y.svg/1200px-Coldplay_X%26Y.svg.png',
-	},
+	// {
+	// 	songId: 10,
+	// 	artistId: 2,
+	// 	albumId: 3,
+	// 	title: 'Viva La Vida',
+	// 	gender: 'Post-Britpop',
+	// 	launchYear: '2005',
+	// 	link: '/songs/Viva-La-Vida.m4a',
+	// 	duration: '2:54',
+	// 	coverImage: 'https://i.scdn.co/image/ab67616d0000b273121b47fdc79958a05e67fb17',
+	// 	albumName: 'Viva la Vida or Death and All His Friends',
+	// 	artistName: 'Coldplay',
+	// },
 	{
 		songId: 10,
 		artistId: 2,
@@ -122,6 +133,8 @@ export default [
 		duration: '2:54',
 		coverImage:
 			'https://upload.wikimedia.org/wikipedia/en/thumb/2/28/Coldplay_X%26Y.svg/1200px-Coldplay_X%26Y.svg.png',
+		albumName: 'X & Y',
+		artistName: 'Coldplay',
 	},
 	{
 		songId: 11,
@@ -134,6 +147,8 @@ export default [
 		duration: '3:54',
 		coverImage:
 			'https://upload.wikimedia.org/wikipedia/en/thumb/2/28/Coldplay_X%26Y.svg/1200px-Coldplay_X%26Y.svg.png',
+		albumName: 'X & Y',
+		artistName: 'Coldplay',
 	},
 	{
 		songId: 12,
@@ -146,6 +161,8 @@ export default [
 		duration: '3:02',
 		coverImage:
 			'https://upload.wikimedia.org/wikipedia/en/thumb/2/28/Coldplay_X%26Y.svg/1200px-Coldplay_X%26Y.svg.png',
+		albumName: 'X & Y',
+		artistName: 'Coldplay',
 	},
 	{
 		songId: 13,
@@ -158,6 +175,8 @@ export default [
 		duration: '3:10',
 		coverImage:
 			'https://upload.wikimedia.org/wikipedia/en/thumb/2/28/Coldplay_X%26Y.svg/1200px-Coldplay_X%26Y.svg.png',
+		albumName: 'X & Y',
+		artistName: 'Coldplay',
 	},
 	{
 		songId: 14,
@@ -170,6 +189,8 @@ export default [
 		duration: '4:45',
 		coverImage:
 			'https://upload.wikimedia.org/wikipedia/en/thumb/2/28/Coldplay_X%26Y.svg/1200px-Coldplay_X%26Y.svg.png',
+		albumName: 'X & Y',
+		artistName: 'Coldplay',
 	},
 	{
 		songId: 15,
@@ -182,6 +203,8 @@ export default [
 		duration: '3:36',
 		coverImage:
 			'https://i.pinimg.com/originals/ff/67/31/ff6731aeb9dc809e4e94b3cd472df67a.jpg',
+		albumName: 'Ghost Stories',
+		artistName: 'Coldplay',
 	},
 	{
 		songId: 16,
@@ -194,6 +217,8 @@ export default [
 		duration: '4:45',
 		coverImage:
 			'https://i.pinimg.com/originals/ff/67/31/ff6731aeb9dc809e4e94b3cd472df67a.jpg',
+		albumName: 'Ghost Stories',
+		artistName: 'Coldplay',
 	},
 	{
 		songId: 17,
@@ -206,6 +231,8 @@ export default [
 		duration: '3:48',
 		coverImage:
 			'https://i.pinimg.com/originals/ff/67/31/ff6731aeb9dc809e4e94b3cd472df67a.jpg',
+		albumName: 'Ghost Stories',
+		artistName: 'Coldplay',
 	},
 	{
 		songId: 18,
@@ -218,6 +245,8 @@ export default [
 		duration: '4:54',
 		coverImage:
 			'https://i.pinimg.com/originals/ff/67/31/ff6731aeb9dc809e4e94b3cd472df67a.jpg',
+		albumName: 'Ghost Stories',
+		artistName: 'Coldplay',
 	},
 	{
 		songId: 19,
@@ -230,6 +259,8 @@ export default [
 		duration: '4:27',
 		coverImage:
 			'https://i.pinimg.com/originals/ff/67/31/ff6731aeb9dc809e4e94b3cd472df67a.jpg',
+		albumName: 'Ghost Stories',
+		artistName: 'Coldplay',
 	},
 	{
 		songId: 20,
@@ -241,6 +272,8 @@ export default [
 		link: '',
 		duration: '2:51',
 		coverImage: 'https://i.scdn.co/image/ab67616d0000b273e741cd9dc139d57cc2906186',
+		albumName: 'Ghost Stories',
+		artistName: 'Coldplay',
 	},
 	// {
 	// 	songId: 21,

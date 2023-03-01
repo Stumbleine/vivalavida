@@ -93,8 +93,7 @@ const playerSlice = createSlice({
 			state.volume = payload;
 		},
 
-		setQueue: (state, { payload }) => {		
-			console.log(payload);	
+		setQueue: (state, { payload }) => {
 			state.queue = payload;
 		},
 

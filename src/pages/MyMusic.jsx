@@ -10,7 +10,6 @@ import { setSongs } from '../store/SongSlice';
 import { setQueue, setSongPlaying } from '../store/PlayerSlice';
 
 export default function MyMusic() {
-	console.log(window.location.origin + '/public/songs/A-Message.m4a');
 	const { songs } = useSelector(state => state.song);
 
 	const dispatch = useDispatch();

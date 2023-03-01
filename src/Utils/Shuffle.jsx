@@ -20,7 +20,5 @@ export const shuffleES6 = array => {
 
 export const shufleArray = array => {
 	console.log(array);
-	const sort = array.sort(() => Math.random() )
-	console.log(sort);
-	return sort
-}
+	//return array.sort(() => Math.random() - 0.5);
+};

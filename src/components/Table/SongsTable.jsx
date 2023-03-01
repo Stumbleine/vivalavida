@@ -13,16 +13,19 @@ import {
 import React, { useState } from 'react';
 import { ReactComponent as Play } from '../../assets/icons/play.svg';
 import { ReactComponent as Pause } from '../../assets/icons/pause.svg';
+import { useDispatch, useSelector } from 'react-redux';
+import { setQueue, setSongPlaying } from '../../store/PlayerSlice';
 export default function SongsTable({ songs }) {
-
+	const dispatch = useDispatch();
 	const TABLE_HEAD = [
 		{ label: '#', id: 'index' },
 		{ label: 'Title', id: 'title' },
 		{ label: 'Duration', id: 'duration' },
 		{ label: 'Gender', id: 'gender' },
 		{ label: 'Launch Year', id: 'launchyear' },
+		{ label: 'Actions', id: 'action' },
 	];
-
+	const { songPlaying, isPlaying } = useSelector(state => state.player);
 	const [hoverSong, setHoverSong] = useState({
 		showPlay: false,
 		songId: null,
@@ -36,9 +39,9 @@ export default function SongsTable({ songs }) {
 	const onLeaveSong = song => {
 		setHoverSong({ ...hoverSong, showPlay: false, songId: song.songId });
 	};
-	const playSong = song => {
-		if (hoverSong.songId === song.songId)
-			setHoverSong({ ...hoverSong, isPlaying: !hoverSong.isPlaying });
+	const playSong = id => {
+		// dispatch(setQueue(songs));
+		dispatch(setSongPlaying(id));
 	};
 
 	return (
@@ -60,10 +63,10 @@ export default function SongsTable({ songs }) {
 						<TableRow
 							key={index + 1}
 							hover
-							onMouseOver={() => onHoverSong(song)}
-							onMouseLeave={() => onLeaveSong(song)}
+							// onMouseOver={() => onHoverSong(song)}
+							// onMouseLeave={() => onLeaveSong(song)}
 							onClick={() => {
-								playSong(song);
+								playSong(index);
 							}}>
 							<TableCell>
 								<Typography variant="body2" color="textSecondary" noWrap>
@@ -90,7 +93,7 @@ export default function SongsTable({ songs }) {
 												borderRadius: 2,
 											}}
 										/>
-										{hoverSong.showPlay && hoverSong.songId === song.songId && (
+										{/* {hoverSong.showPlay && hoverSong.songId === song.songId && (
 											<Box
 												sx={{
 													width: '100%',
@@ -127,7 +130,7 @@ export default function SongsTable({ songs }) {
 													</SvgIcon>
 												)}
 											</Box>
-										)}
+										)} */}
 									</Box>
 									<Typography variant="body2" color="textSecondary" noWrap>
 										{song.title}
@@ -148,6 +151,29 @@ export default function SongsTable({ songs }) {
 								<Typography variant="body2" color="textSecondary" noWrap>
 									{song.launchYear}
 								</Typography>
+							</TableCell>
+							<TableCell>
+								{isPlaying && songPlaying.songId === song.songId ? (
+									<SvgIcon
+										sx={{
+											color: 'text.icon',
+											'&:hover': {
+												color: 'terciary.main',
+											},
+										}}>
+										<Pause />
+									</SvgIcon>
+								) : (
+									<SvgIcon
+										sx={{
+											color: 'text.icon',
+											'&:hover': {
+												color: 'terciary.main',
+											},
+										}}>
+										<Play />
+									</SvgIcon>
+								)}
 							</TableCell>
 						</TableRow>
 					))}
