@@ -21,7 +21,7 @@ import {
 	setIndex,
 } from '../store/PlayerSlice';
 import QueueDialog from '../components/Dialog/QueueDialog';
-import { shuffleArray, shuffleES6 } from '../Utils/Shuffle';
+import { shufleArray } from '../Utils/Shuffle';
 export default function Player() {
 	const dispatch = useDispatch();
 	const { queue, songPlaying, isPlaying, volume, indexTrack } = useSelector(
@@ -87,25 +87,34 @@ export default function Player() {
 		dispatch(setNextTrack());
 		dispatch(setPlaying(true))
 		// dispatch(setSongPlaying(0))
-		play();
+		// play();
 	};
 
 	const handlePrevius = () => {
 		pause()
 		dispatch(setPreviusTrack());
-
-		play()
+		const shufle = shufleArray(queue)
+		console.log(shufle);
+		dispatch(setQueue(queue))
+		// play()
 	};
 
-	const handleChangeShuffle = () => {
-		const shuffle = async () => {
+
+	const handleChangeShuffle = async () => {
+		pause()
+		const queueShufled = await shufleArray(queue);
+		console.log(queueShufled);
+		dispatch(setQueue(queueShufled))
+		const shuffle = () => {
 			try {
-				const queueShufled = await shuffleES6(queue);
+				const queueShufled = shufleArray(queue);
+				pause()
 				dispatch(setQueue(queueShufled));
 				dispatch(setSongPlaying(0))
 				play()
 
 			} catch (e) {
+				console.log('pop');
 				throw new Error(e);
 			}
 		};

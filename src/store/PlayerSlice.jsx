@@ -92,9 +92,12 @@ const playerSlice = createSlice({
 		setVolume: (state, { payload }) => {
 			state.volume = payload;
 		},
-		setQueue: (state, { payload }) => {
+
+		setQueue: (state, { payload }) => {		
+			console.log(payload);	
 			state.queue = payload;
 		},
+
 		setIndex: (state, { payload }) => {
 			state.indexTrack = payload;
 		},
