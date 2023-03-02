@@ -31,14 +31,7 @@ export default function SongsTable({ songs }) {
 		songId: null,
 		isPlaying: false,
 	});
-	const onHoverSong = song => {
-		// console.log('hover', song);
-		setHoverSong({ showPlay: true, songId: song.songId, isPlaying: false });
-	};
 
-	const onLeaveSong = song => {
-		setHoverSong({ ...hoverSong, showPlay: false, songId: song.songId });
-	};
 	const playSong = id => {
 		// dispatch(setQueue(songs));
 		dispatch(setSongPlaying(id));
@@ -61,10 +54,10 @@ export default function SongsTable({ songs }) {
 				<TableBody>
 					{songs?.map((song, index) => (
 						<TableRow
+							sx={{cursor:'pointer'}}
 							key={index + 1}
 							hover
-							// onMouseOver={() => onHoverSong(song)}
-							// onMouseLeave={() => onLeaveSong(song)}
+
 							onClick={() => {
 								playSong(index);
 							}}>
@@ -82,7 +75,6 @@ export default function SongsTable({ songs }) {
 											height: 50,
 											borderRadius: 2,
 											position: 'relative',
-											// background: 'pink',
 										}}>
 										<Box
 											component="img"
@@ -93,48 +85,17 @@ export default function SongsTable({ songs }) {
 												borderRadius: 2,
 											}}
 										/>
-										{/* {hoverSong.showPlay && hoverSong.songId === song.songId && (
-											<Box
-												sx={{
-													width: '100%',
-													height: '100%',
-													background: 'rgba(31, 30, 31, 0.5)',
-													zIndex: 'tooltip',
-													borderRadius: 'inherit',
-													position: 'absolute',
-													textAlign: 'center',
-													display: 'flex',
-													justifyContent: 'center',
-													alignItems: 'center',
-													bottom: 0,
-												}}>
-												{!hoverSong.isPlaying ? (
-													<SvgIcon
-														sx={{
-															color: 'text.icon',
-															'&:hover': {
-																color: 'terciary.main',
-															},
-														}}>
-														<Play />
-													</SvgIcon>
-												) : (
-													<SvgIcon
-														sx={{
-															color: 'text.icon',
-															'&:hover': {
-																color: 'terciary.main',
-															},
-														}}>
-														<Pause />
-													</SvgIcon>
-												)}
-											</Box>
-										)} */}
+						
 									</Box>
+									<Box>
+
 									<Typography variant="body2" color="textSecondary" noWrap>
 										{song.title}
 									</Typography>
+									<Typography variant="body2" color="textSecondary" noWrap>
+										{song.artistName}
+									</Typography>
+									</Box>
 								</Stack>
 							</TableCell>
 							<TableCell>
@@ -157,6 +118,7 @@ export default function SongsTable({ songs }) {
 									<SvgIcon
 										sx={{
 											color: 'text.icon',
+											
 											'&:hover': {
 												color: 'terciary.main',
 											},

@@ -27,7 +27,6 @@ export default function Player() {
 	const { queue, songPlaying, isPlaying, volume, indexTrack } = useSelector(
 		state => state.player
 	);
-	const { songs } = useSelector(state => state.song);
 
 	const [play, { pause, duration, sound, stop }] = useSound(songPlaying?.link, {
 		// id: songPlaying.songId,
@@ -40,7 +39,7 @@ export default function Player() {
 	const [totalTime, setTotalTime] = useState({ min: '0', sec: '0' });
 	const [currentTime, setCurrentTime] = useState({ min: '0', sec: '0' });
 	const [seconds, setSeconds] = useState(0);
-	// useEffect(() => {}, []);
+
 	useEffect(() => {
 		const sec = duration / 1000;
 		const min = Math.floor(sec / 60);
@@ -65,16 +64,7 @@ export default function Player() {
 		}, 1000);
 		return () => clearInterval(interval);
 	}, [sound]);
-
-	// useEffect(() => {
-	// 	if (isPlaying) {
-	// 		play();
-	// 		console.log('play');
-	// 	} else {
-	// 		pause();
-	// 		console.log('pause');
-	// 	}
-	// }, [isPlaying]);
+	
 
 	const handlePlaying = () => {
 		if (isPlaying && songPlaying) {
@@ -93,9 +83,15 @@ export default function Player() {
 	};
 
 	const handlePrevius = () => {
-		pause();
-		dispatch(setPlaying(false));
-		dispatch(setPreviusTrack());
+		console.log(seconds)
+		if(seconds<10 ){
+
+			pause();
+			dispatch(setPlaying(false));
+			dispatch(setPreviusTrack());
+		}else{
+			sound.seek([0])
+		}
 	};
 
 	const handleChangeShuffle = async () => {
